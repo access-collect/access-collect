@@ -7,7 +7,8 @@ import { InputFormRequired } from "@/app/components/inputs/InputFormRequired";
 import { InputPassword } from "@/app/components/inputs/InputPassword";
 import { Organisation } from "@/lib/schema/organisation";
 import { addUser } from "@/lib/userQuery";
-import { useState } from "react";
+import { useState , } from "react";
+import {useRouter} from "next/navigation"
 
 const UserForm = ({
   organisationInfos,
@@ -16,6 +17,11 @@ const UserForm = ({
 }) => {
   const [selectedUser, setSelectedUser] = useState("");
   const [selectedOrga, setSelectedOrga] = useState("");
+  const router = useRouter() ;
+  const handleRedirect = () => {
+    router.push("/dashboard/user")
+    
+  };
 
   const handleFormAction = async (formData: FormData) => {
     const result = await addUser(formData);
@@ -99,7 +105,7 @@ const UserForm = ({
       </div>
       <div className="flex justify-around">
         <CancelButton />
-        <OrangeButton label={"Confirmer"} route={""} />
+        <OrangeButton label={"Confirmer"} onClick={handleRedirect}/>
       </div>
     </form>
   );
