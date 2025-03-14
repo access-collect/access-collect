@@ -9,7 +9,8 @@ import { Organisation } from "@/lib/schema/organisation";
 import { useEffect, useState } from "react";
 import OrangeButton from "@/app/components/button/orangeButton";
 import { User } from "@/lib/schema/user";
-import { InputFormRequired } from "@/app/components/inputs/InputFormRequired";
+import { InputFormRequired } from "@/app/components/InputFormRequired";
+import { useRouter } from "next/navigation";
 
 export const CollectedPointForm = ({
   organisationInfos,
@@ -20,6 +21,9 @@ export const CollectedPointForm = ({
   const [clients, setClients] = useState<User[]>([]);
   const [selectedClient, setSelectedClient] = useState<string>("");
   const [checkDeliveryDay, setCheckDeliveryDay] = useState<string[]>([]);
+  const router = useRouter() ;
+  const handleRedirect = () => {
+    router.push("/dashboard/collected-point-list")}
 
   const handleChange = (e: { target: { checked: boolean; value: string } }) => {
     let deliveryDays: string[] = checkDeliveryDay;
@@ -156,7 +160,7 @@ export const CollectedPointForm = ({
         </div>
         <div className="flex justify-around">
           <CancelButton />
-          <OrangeButton label={"Confirmer"} route={""} />
+          <OrangeButton label={"Confirmer"} onClick={handleRedirect} />
         </div>
       </form>
     </>
