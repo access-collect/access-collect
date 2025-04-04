@@ -2,10 +2,12 @@ export const InputFormRequired = ({
   name,
   label,
   placeholder,
+  type
 }: {
   name: string;
   label: string;
   placeholder: string;
+  type: string
 }) => {
   return (
     <>
@@ -18,7 +20,7 @@ export const InputFormRequired = ({
         </label>
         <input
           className={`p-2 bg-transparentLightOrange text-midnightBlue text-sm rounded-md w-72 h-8 md:w-96`}
-          type="text"
+          type={type}
           name={name}
           placeholder={placeholder}
           required
