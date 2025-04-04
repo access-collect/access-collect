@@ -3,7 +3,7 @@ const CheckboxForm = ({ name, value }: { name: string; value: string }) => {
     <>
       <div className="flex items-start">
         <input
-          className={`mr-2 rounded-md h-auto`}
+          className={`mt-1 mr-2 rounded-md h-auto`}
           type="checkbox"
           name={name}
           value={value}
