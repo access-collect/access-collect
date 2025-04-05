@@ -51,3 +51,16 @@ export const errorAlert = async (text: string) => {
   });
   return result;
 };
+
+export const confirmAlert = async (title: string, text?: string) => {
+  const result = await Swal.fire({
+    title: title,
+    text: text,
+    icon: "question",
+    showDenyButton: true,
+    showConfirmButton: true,
+    confirmButtonText: "Confirmer",
+    denyButtonText: "Annuler"
+  })
+  return result
+}
