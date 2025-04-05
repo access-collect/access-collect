@@ -1,15 +1,27 @@
 "use client"
 import { deleteOrganisationById } from "@/lib/organisationQuery";
 import Image from "next/image";
+import { confirmAlert, errorAlert, successAlert } from "../alert";
+import { useRouter } from "next/navigation";
+
 
 const DeleteButton = ({ name, organisationId }: { name: string, organisationId: string }) => {
+  const router = useRouter();
     
     const deleteOrganisation = async(organisationId: string) => {
+      const response = await confirmAlert("Suppression de l'organisation", "Veuillez confirmer la suppression de l'organisation svp ?")
+      if(response.isConfirmed){
         const result = await deleteOrganisationById(organisationId)
         if(result.error){
-            console.log("error")
+            errorAlert("Une erreur s'est produite lors de la suppression")
         }
-        console.log("organisation deleted")
+        successAlert("L'organisation a bien été supprimée")
+        router.push('/dashboard/organisation')
+        
+        
+      }
+
+      return;
     }
 
   return (

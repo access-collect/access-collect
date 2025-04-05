@@ -1,6 +1,6 @@
 import DeleteButton from "@/app/components/button/deleteButton";
 import ModificationButton from "@/app/components/button/modificationButton";
-import { getOrganisation } from "@/lib/organisationQuery";
+import { deleteOrganisationById, getOrganisation } from "@/lib/organisationQuery";
 
 export default async function OrganisationsPage({
     params,
@@ -8,6 +8,14 @@ export default async function OrganisationsPage({
     params: { id: string };
   }) {
     const organisation = await getOrganisation(params.id)
+
+    // const deleteOrganisation = async() => {
+    //         const result = await deleteOrganisationById(organisation.id)
+    //         if(result.error){
+    //             console.log("error")
+    //         }
+    //         console.log("organisation deleted")
+    //     }
     
     return(
         <div className="flex gap-y-4 flex-col w-full">
@@ -16,7 +24,7 @@ export default async function OrganisationsPage({
       </div>
       <div className="flex flex-row justify-around">
       
-        <ModificationButton name={"Créer une organisation"} />
+        <ModificationButton name={"Modifier une organisation"} />
      
    
       <DeleteButton name={"Supprimer une organisation"} organisationId={organisation.id}></DeleteButton>
