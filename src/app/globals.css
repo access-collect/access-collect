@@ -55,3 +55,69 @@ body {
     font-family: "openDyslexic";
   }
 }
+
+.slick-prev {
+  left: -45px !important;
+}
+
+.slick-next:before,
+.slick-prev:before {
+  font-size: 40px !important;
+  color: #7f9f80 !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 600px) {
+  .slick-next,
+  .slick-prev {
+    display: none !important;
+  }
+}
+
+.slick-dots li button:before {
+  color: #7f9f80 !important;
+}
+
+.c-btn {
+  cursor: pointer;
+  position: relative;
+  border-radius: 10px;
+  display: inline-block;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.c-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.c-btn:before {
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  width: 100%;
+  will-change: transform;
+}
+
+.c-btn:hover:before {
+  transform: translateY(0);
+}
+
+.c-btn--orange {
+  background: #ffc374;
+  border-color: #ffc374;
+}
+
+.c-btn--orange:before {
+  background: #ffa632;
+  border-color: #ffa632;
+}

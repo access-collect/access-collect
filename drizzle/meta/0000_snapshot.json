@@ -114,12 +114,8 @@
           "name": "vehicles_organisationId_organisation_id_fk",
           "tableFrom": "vehicles",
           "tableTo": "organisation",
-          "columnsFrom": [
-            "organisationId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["organisationId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -129,9 +125,7 @@
         "vehicles_registration_unique": {
           "name": "vehicles_registration_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "registration"
-          ]
+          "columns": ["registration"]
         }
       },
       "checkConstraints": {}
@@ -204,12 +198,8 @@
           "name": "user_organisationId_organisation_id_fk",
           "tableFrom": "user",
           "tableTo": "organisation",
-          "columnsFrom": [
-            "organisationId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["organisationId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -219,9 +209,7 @@
         "user_email_unique": {
           "name": "user_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "checkConstraints": {}
@@ -288,12 +276,8 @@
           "name": "collectPoint_user_id_user_id_fk",
           "tableFrom": "collectPoint",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -301,12 +285,8 @@
           "name": "collectPoint_organisationId_organisation_id_fk",
           "tableFrom": "collectPoint",
           "tableTo": "organisation",
-          "columnsFrom": [
-            "organisationId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["organisationId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -462,12 +442,8 @@
           "name": "collectedData_vehicleId_vehicles_id_fk",
           "tableFrom": "collectedData",
           "tableTo": "vehicles",
-          "columnsFrom": [
-            "vehicleId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["vehicleId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -481,12 +457,7 @@
     "public.role": {
       "name": "role",
       "schema": "public",
-      "values": [
-        "superAdmin",
-        "admin",
-        "client",
-        "collector"
-      ]
+      "values": ["superAdmin", "admin", "client", "collector"]
     },
     "public.day": {
       "name": "day",

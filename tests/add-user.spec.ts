@@ -4,7 +4,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto("/dashboard/add-user");
 });
 
-//to be done again but need to change add-user form 
+//to be done again but need to change add-user form
 test.describe("Add User Page", () => {
   test("What add-user page should contains", async ({ page }) => {
     await expect(page).toHaveTitle(/Access Collect/);
@@ -45,6 +45,6 @@ test.describe("Add User Page", () => {
     //have to correct this test here there is a problem with the selector
     await page.locator('select[name="organisationId"]').click();
 
-    await page.getByRole('button', { name: 'Confirmer' }).click();
+    await page.getByRole("button", { name: "Confirmer" }).click();
   });
 });

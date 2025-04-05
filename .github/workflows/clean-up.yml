@@ -26,4 +26,4 @@ jobs:
           npm run db:generate
           npm run db:migrate
         env:
-          DATABASE_URL: '${{ secrets.DATABASE_URL }}'
+          DATABASE_URL: "${{ secrets.DATABASE_URL }}"

@@ -3,7 +3,6 @@ on:
   pull_request:
     branches: [main]
 
-
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -44,7 +43,7 @@ jobs:
       - name: Run Migrations on Preview Branch
         run: npm install && npm run db:generate && npm run db:migrate
         env:
-           DATABASE_URL: "${{ steps.create_branch.outputs.db_url_with_pooler }}"
+          DATABASE_URL: "${{ steps.create_branch.outputs.db_url_with_pooler }}"
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
@@ -62,7 +61,7 @@ jobs:
           message: |
             Vercel Preview URL :rocket: : ${{ steps.deploy.outputs.preview_url }}
             Neon branch :elephant: : https://console.neon.tech/app/projects/${{ vars.NEON_PROJECT_ID }}/branches/${{ steps.create_branch.outputs.branch_id }}
-             
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -70,13 +69,13 @@ jobs:
 
       - name: Install dependencies for tests
         run: npm ci
-        
+
       - name: Build
         run: npm run build
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-   
+
       - name: Run Playwright tests
         run: npx playwright test
         env:
