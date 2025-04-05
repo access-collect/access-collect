@@ -19,7 +19,7 @@ const logButton = ({
     <>
       <a
         href={route}
-        className={`c-btn c-btn--orange w-84 font-title text-normal ${paddingClasses[padding] || "px-4 py-4"} md:text-3xl`}
+        className={`c-btn c-btn--orange w-84 font-title text-normal ${paddingClasses[padding] || "px-4 py-4"} md:text-2xl`}
         aria-label={`Cliquer sur le bouton ${label}`}
       >
         <span>{label}</span>
