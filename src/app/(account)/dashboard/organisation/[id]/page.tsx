@@ -1,7 +1,6 @@
 "use client"
 import { confirmAlert, errorAlert, successAlert } from "@/app/components/alert";
-import DeleteButton from "@/app/components/button/deleteButton";
-import ModificationButton from "@/app/components/button/modificationButton";
+import OliveGreenButton from "@/app/components/button/OliveGreenButton";
 import { deleteOrganisationById, getOrganisation } from "@/lib/organisationQuery";
 import { useRouter } from "next/navigation";
 
@@ -36,10 +35,10 @@ export default async function OrganisationsPage({
       </div>
       <div className="flex flex-row justify-around">
       
-        <ModificationButton name={"Modifier une organisation"} />
+        <OliveGreenButton name={"Modifier une organisation"} title={"Modifier"} svg={"/edit.svg"} alt={"pictogramme modifier"} />
      
    
-        <DeleteButton name={"Supprimer une organisation"} action={deleteOrganisation}></DeleteButton>
+        <OliveGreenButton name={"Supprimer une organisation"} title={"Supprimer"} svg={"/delete.svg"} alt={"pictogramme supprimer"} action={deleteOrganisation}/>
 
      
       </div>
