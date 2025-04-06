@@ -1,6 +1,6 @@
-import CreateButton from "@/app/components/button/createButton";
 import CollectedPointList from "../_components/CollectedPointList";
 import Link from "next/link";
+import OliveGreenButton from "@/app/components/button/OliveGreenButton";
 
 const collectedPointList = async () => {
   return (
@@ -10,7 +10,7 @@ const collectedPointList = async () => {
           {"POINT DE COLLECTE"}
         </div>
         <Link href="/dashboard/add-collected-point">
-          <CreateButton name={"Créer un point de collecte"} />
+          <OliveGreenButton name={"Créer un point de collecte"} title={"Créer"} svg={"/create.svg"} alt={"pictogramme ajouter"} />
         </Link>
         <div className="mx-4 flex justify-center flex-col">
           <h1 className="text-2xl font-title text-oliveGreen text-center ">

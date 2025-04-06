@@ -1,4 +1,4 @@
-import CreateButton from "@/app/components/button/createButton";
+import OliveGreenButton from "@/app/components/button/OliveGreenButton";
 import { getUsersWithOrganisationName } from "@/lib/userQuery";
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ export default async function UsersPage() {
         {"UTILISATEURS"}
       </div>
       <Link href="/dashboard/add-user">
-        <CreateButton name={"Créer un utilisateur"} />
+        <OliveGreenButton name={"Créer un utilisateur"} title={"Créer"} svg={"/create.svg"} alt={"pictogramme ajouter"} />
       </Link>
 
       <div className="mx-4 flex justify-center flex-col">
