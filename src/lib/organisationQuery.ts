@@ -42,6 +42,7 @@ export const addOrganisation = async (formData: any) => {
 export const deleteOrganisationById = async(organisationId: string) => {
   const result = await db.delete(organisation).where(eq(organisation.id, organisationId)).returning({deleted: organisation.id})
   if(result[0].deleted){
+    revalidatePath("/dashboard/organisation")
     return {result: result}
   }
   return {error: "Organisation has not been deleted"}

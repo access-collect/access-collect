@@ -70,8 +70,6 @@ export const confirmAlert = async (title: string, text?: string) => {
       cancelButton: 'cancelButton', 
       title: "font-title"
     }
-
-    
   })
   return result
 }
