@@ -33,14 +33,23 @@ export default async function OrganisationsPage({
       <div className="text-midnightBlue font-title font-bold  text-2xl text-center mt-4">
         {"ORGANISATIONS"}
       </div>
-      <div className="flex flex-row justify-around">
+      <div className="flex flex-row justify-around justify-center">
       
         <OliveGreenButton name={"Modifier une organisation"} title={"Modifier"} svg={"/edit.svg"} alt={"pictogramme modifier"} />
-     
-   
         <OliveGreenButton name={"Supprimer une organisation"} title={"Supprimer"} svg={"/delete.svg"} alt={"pictogramme supprimer"} action={deleteOrganisation}/>
-
-     
+        </div>
+        <div className="flex justify-center">
+        <div className="shadow-md shadow-lightOliveGreen mx-6 rounded-b-lg my-6 w-54 md:w-2/3">
+          <h1 className="bg-transparentImperialYellow p-2 text-oliveGreen text-center uppercase font-title">{"INFORMATIONS DE L'ORGANISATION"}</h1>
+          <div className="pl-10">
+          <p className="mt-6 text-oliveGreen font-title">{"NOM : " }<span className="text-midnightBlue font-body">{organisation.name}</span></p>
+          <p className="mt-6 text-oliveGreen font-title">{"NOM DU CONTACT : " }<span className="text-midnightBlue font-body">{organisation.contact}</span></p>
+          <p className="mt-6 text-oliveGreen font-title">{"ADRESSE : " }<span className="text-midnightBlue font-body">{organisation.address}</span></p>
+          <p className="mt-6 text-oliveGreen font-title">{"TELEPHONE : " }<span className="text-midnightBlue font-body">{organisation.phoneNumber}</span></p>
+          <p className="mt-6 mb-6 text-oliveGreen font-title">{"N° D'AGREMENT : " }<span className="text-midnightBlue font-body">{organisation.agrementNumber}</span></p>
+          </div>
+          
+        </div>
       </div>
       </div>
     )
