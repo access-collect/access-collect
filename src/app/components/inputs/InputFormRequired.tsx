@@ -2,12 +2,12 @@ export const InputFormRequired = ({
   name,
   label,
   placeholder,
-  type
+  type,
 }: {
   name: string;
   label: string;
   placeholder: string;
-  type: string
+  type: string;
 }) => {
   return (
     <>
