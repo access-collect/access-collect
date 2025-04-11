@@ -80,7 +80,7 @@ const Navbar = () => {
         <Link href="/contact" className="text-white hover:text-darkGrey ">
           Contact
         </Link>
-        <li>
+        <li className="list-none">
           <LogButton label={"SE CONNECTER"} route="/login" padding={2} />
         </li>
       </div>
