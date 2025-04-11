@@ -4,11 +4,8 @@ const Features = () => {
   return (
     <>
       <section className="text-midnightBlue mt-24">
-        <div className="flex justify-center items-center bg-transparentOliveGreen rounded-r-[50px] w-[90%] rotate-6 md:rotate-3 -ml-2 md:-ml-4">
-          <h1
-            className="text-center text-2xl text-brightOrange font-section py-10 md:py-10 md:text-4xl -rotate-6 md:-rotate-3
-                                "
-          >
+        <div className="flex justify-center items-center -ml-2 bg-transparentOliveGreen rounded-r-[50px] w-[90%] rotate-6 md:rotate-3 md:-ml-4">
+          <h1 className="text-center text-2xl text-brightOrange font-section py-10 -rotate-6 md:py-10 md:text-4xl md:-rotate-3">
             {"Les fonctionnalités"}
           </h1>
         </div>

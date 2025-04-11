@@ -23,7 +23,7 @@ const Presentation = () => {
                 <span className="text-brightOrange">{"écologique"}</span>
               </p>
             </div>
-            <div className="hidden md:hidden lg:block lg:mt-44 lg:mx-16">
+            <div className="hidden lg:block lg:mt-44 lg:mx-16">
               <LogButton
                 label={"Demander une démo"}
                 route="/contact"
@@ -57,7 +57,7 @@ const Presentation = () => {
 
           {/* right part */}
 
-          <div className="hidden md:hidden lg:flex lg:items-center lg:justify-center lg:mt-12 lg:w-1/2">
+          <div className="hidden lg:flex lg:items-center lg:justify-center lg:mt-12 lg:w-1/2">
             {/* Image of the trash can*/}
             <Image
               className=" max-w-[500px] xl:max-w-[1000px]"

@@ -10,7 +10,7 @@ const ContactUs = () => {
           alt={"flèche animée insistant sur la phrase n'hésitez plus!"}
           width={200}
           height={1}
-          className="flex w-[100px] md:w-[200px] justify-center"
+          className="flex justify-center w-[100px] md:w-[200px] "
         />
         <div className="shadow-lg rounded-lg shadow-transparentMidnightBlue -mt-12 mx-6 md:mx-20 ">
           <h1 className="text-center flex items-center justify-center relative text-2xl font-section py-10 bg-transparentLightOrange mb-10 md:text-6xl before:absolute before:content-[''] before:w-24 before:border before:border-oliveGreen before:bottom-8">
