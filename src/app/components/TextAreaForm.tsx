@@ -1,13 +1,11 @@
-export const InputFormRequired = ({
+export const TextAreaForm = ({
   name,
   label,
   placeholder,
-  type,
 }: {
   name: string;
   label: string;
   placeholder: string;
-  type: string;
 }) => {
   return (
     <>
@@ -18,12 +16,12 @@ export const InputFormRequired = ({
         >
           {label}
         </label>
-        <input
-          className={`p-2 bg-transparentLightOrange text-midnightBlue text-sm rounded-md w-72 h-8 md:w-96`}
-          type={type}
+        <textarea
+          className={`p-2 bg-transparentLightOrange text-midnightBlue text-sm rounded-md w-72 h-auto md:w-96`}
           name={name}
           placeholder={placeholder}
           required
+          rows={5}
         />
       </div>
     </>
