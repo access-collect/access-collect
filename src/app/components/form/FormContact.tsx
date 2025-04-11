@@ -1,32 +1,43 @@
 "use client";
 
-import { sendMailFromContact } from "@/lib/utils";
 import CheckboxForm from "../CheckboxForm";
 import { InputFormRequired } from "../inputs/InputFormRequired";
 import { TextAreaForm } from "../TextAreaForm";
-import nodemailer from "nodemailer";
-
 
 const FormContact = () => {
-  const handleSubmit = async (formData: FormData) => {
-
-    await sendMailFromContact(formData);
-
-  }
-
+  const handleSubmit = (formData: FormData) => {
+    fetch("/api/contact", {
+      method: "POST",
+      body: formData,
+    });
+  };
 
   return (
     <>
       <div className="mx-6 mt-10 px-4 py-10 shadow-md shadow-lightOliveGreen rounded-lg flex flex-col items-start justify-center gap-5 w-1/4 mx-auto">
         <form action={handleSubmit}>
           <div>
-            <InputFormRequired type="text" name="Nom" label="Nom" placeholder="Nom" />
+            <InputFormRequired
+              type="text"
+              name="name"
+              label="Nom"
+              placeholder="Nom"
+            />
           </div>
           <div>
-            <InputFormRequired type="email" name="Adresse mail" label="Adresse mail" placeholder="Adresse mail" />
+            <InputFormRequired
+              type="email"
+              name="email"
+              label="Adresse mail"
+              placeholder="Adresse mail"
+            />
           </div>
           <div>
-            <TextAreaForm name="Message" label="Message" placeholder="Votre message ici..." />
+            <TextAreaForm
+              name="message"
+              label="Message"
+              placeholder="Votre message ici..."
+            />
           </div>
           <div>
             <CheckboxForm

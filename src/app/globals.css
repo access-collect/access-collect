@@ -63,12 +63,11 @@ body {
 .slick-next:before,
 .slick-prev:before {
   font-size: 40px !important;
-  color: #7F9F80 !important;
+  color: #7f9f80 !important;
   opacity: 1 !important;
 }
 
 @media (max-width: 600px) {
-
   .slick-next,
   .slick-prev {
     display: none !important;
