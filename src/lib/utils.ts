@@ -50,3 +50,30 @@ export const sendMailToUser = async (url: string, info: any, email: string) => {
     console.error("Message not sent to user");
   }
 };
+
+export const mailFromContact = async (info: any, email: string, message: string) => {
+  const mailBodyHtml: string =
+    '\
+      <h3>Bonjour, </h3> \
+      <p>Vous recevez ce mail car un utilisateur souhaite vous contacter sur AccessCollect.<br>\
+      Voici le message:' + message + '</p>';
+
+  try {
+    info.sendMail({
+      from: email,
+      to: "synowski.jessica@hotmail.fr",
+      subject: "Contact accescollect",
+      html: mailBodyHtml,
+    });
+    console.log("Message from contact send");
+  } catch {
+    console.error("Message from contact not sent ");
+  }
+}
+
+export const sendMailFromContact = async (formData: FormData) => {
+  const info = await creationOfTransporter();
+  const visitorData = Object.fromEntries(formData);
+  console.log(visitorData);
+  await mailFromContact(info, visitorData.email as string, visitorData.message as string)
+}
