@@ -40,7 +40,7 @@ const Presentation = () => {
                   height={1}
                 />
               </div>
-              <p className="mx-10 pt-24 lg:pt-16 relative text-md lg:w-full lg:text-2xl lg:max-w-1/2 lg:leading-[2] lg:mx-16 xl:max-w-[70%] 2xl:max-w-[90%]">
+              <p className="mx-10 pt-24 relative text-md lg:pt-16 lg:w-full lg:text-2xl lg:max-w-1/2 lg:leading-[2] lg:mx-16 xl:max-w-[70%] 2xl:max-w-[90%]">
                 {
                   "Une application pour faciliter la collecte des déchets recyclables en entreprise, tout en favorisant l’inclusion des personnes en situation de handicap."
                 }
