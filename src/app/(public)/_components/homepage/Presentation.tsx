@@ -13,9 +13,9 @@ const Presentation = () => {
         <div className="lg:mx-10 lg:flex lg:items-center xl:mx-24">
           {/* left part */}
           <div className="w-full lg:flex lg:flex-col lg:justify-around ">
-            <div className="h-56 mt-10 mb-20 mx-8 flex flex-col lg:h-0 lg:mx-0 ">
-              <TbLoaderQuarter className="text-oliveGreen mt-0 ml-0 text-7xl lg:text-8xl" />
-              <p className="relative md:absolute text-xl mx-10 -mt-10 font-section md:text-2xl lg:mt-4 lg:ml-16 lg:text-3xl lg:leading-[2] lg:w-1/2 lg:pr-40 xl:max-w-[70%] 2xl:max-w-[90%]">
+            <div className="h-56 mt-10 mb-20 mx-8 flex flex-col lg:h-auto lg:mx-0 ">
+              <TbLoaderQuarter className="text-oliveGreen mt-0 ml-0 text-5xl lg:text-7xl lg:ml-2 lg:-mt-4" />
+              <p className="relative text-xl mx-9 -mt-6 font-section md:absolute md:text-2xl lg:mt-4 lg:ml-16 lg:text-3xl lg:leading-[2] lg:w-1/2 lg:pr-40 xl:max-w-[70%] 2xl:max-w-[90%]">
                 {
                   "Optimisez la collecte des déchets en entreprise avec une solution"
                 }
