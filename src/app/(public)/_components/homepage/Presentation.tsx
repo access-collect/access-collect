@@ -15,7 +15,7 @@ const Presentation = () => {
           <div className="w-full lg:flex lg:flex-col lg:justify-around ">
             <div className="h-56 mt-10 mb-20 mx-8 flex flex-col lg:h-auto lg:mx-0 ">
               <TbLoaderQuarter className="text-oliveGreen mt-0 ml-0 text-5xl lg:text-7xl lg:ml-2 lg:-mt-4" />
-              <p className="relative text-xl mx-9 -mt-6 font-section md:absolute md:text-2xl lg:mt-4 lg:ml-16 lg:text-3xl lg:leading-[2] lg:w-1/2 lg:pr-40 xl:max-w-[70%] 2xl:max-w-[90%]">
+              <p className="relative text-xl ml-0 pl-8 -mt-6 font-section md:absolute md:text-2xl lg:mt-4 lg:ml-16 lg:text-3xl lg:leading-[2] lg:w-1/2 lg:pr-40 xl:max-w-[70%] 2xl:max-w-[90%]">
                 {
                   "Optimisez la collecte des déchets en entreprise avec une solution"
                 }
