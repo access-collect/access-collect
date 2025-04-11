@@ -49,13 +49,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link
-              href="/login"
-              onClick={handleClick}
-              className="flex justify-center mt-1"
-            >
-              <LogButton label="SE CONNECTER" />
-            </Link>
+            <LogButton label={"SE CONNECTER"} route="/login" padding={1} />
           </li>
         </ul>
       </div>
@@ -86,9 +80,9 @@ const Navbar = () => {
         <Link href="/contact" className="text-white hover:text-darkGrey ">
           Contact
         </Link>
-        <Link href="/login">
-          <LogButton label="SE CONNECTER" />
-        </Link>
+        <li className="list-none">
+          <LogButton label={"SE CONNECTER"} route="/login" padding={2} />
+        </li>
       </div>
       <div>{click && content}</div>
       <button

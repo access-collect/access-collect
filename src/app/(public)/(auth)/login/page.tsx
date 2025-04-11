@@ -10,7 +10,7 @@ const LoginPage = () => {
       <div className="flex flex-wrap gap-x-4 justify-around gap-y-8 mb-8 mt-8">
         <div>
           <Image
-            src="/tri2.png"
+            src="/tri.svg"
             alt="Illustration bacs de tri"
             width={500}
             height={1}

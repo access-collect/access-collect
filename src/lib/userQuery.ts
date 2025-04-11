@@ -85,7 +85,11 @@ export const sendResetPasswordEmailIfUserExists = async (email: string) => {
     const userKey = await getKeyByUserId(user.id);
     const info: any = await creationOfTransporter();
     const url: string =
-      process.env.NEXTAUTH_URL +"/reset-password/" + user.id + "/" + userKey.id;
+      process.env.NEXTAUTH_URL +
+      "/reset-password/" +
+      user.id +
+      "/" +
+      userKey.id;
     sendMailToUser(url, info, user.email);
   }
 };
