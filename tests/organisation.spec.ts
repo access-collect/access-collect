@@ -1,39 +1,37 @@
 import { test, expect } from "@playwright/test";
+import { insertOrganisation, removeOrganisation } from "./functions";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/dashboard/organisation");
 });
 
-test.describe("Organisation Page", () => {
-  test("What page should contain", async ({ page }) => {
-    await expect(page).toHaveTitle(/Access Collect/);
-    expect(page.getByText("ORGANISATION")).toBeVisible;
-    expect(page.getByText("Liste des organisations :")).toBeVisible;
-    expect(page.getByRole("button", { name: "Créer" })).toBeVisible;
-    expect(page.getByText("ORGANISATION")).toBeVisible;
-    expect(page.getByText("Liste des organisations :")).toBeVisible;
-    expect(page.getByRole("button", { name: "Créer" })).toBeVisible;
-    expect(
-      page.getByRole("link", {
-        name: "Accéder à la page dashboard/utilisateur Utilisateurs",
-      }),
-    ).toBeVisible;
-    expect(
-      page.getByRole("link", {
-        name: "Accéder à la page dashboard/organisation Organisations",
-      }),
-    ).toBeVisible;
-    expect(
-      page.getByRole("link", {
-        name: "Accéder à la page dashboard/point de collecte Points de collecte",
-      }),
-    ).toBeVisible;
-    expect(
-      page.getByRole("link", {
-        name: "pictogramme ajouter Créer",
-      }),
-    ).toBeVisible;
-  });
+//have to change bd test in local 
+
+// test("What page should contain", async ({ page }) => {
+//   await expect(page.locator('body')).toMatchAriaSnapshot(`
+//       - text: ORGANISATIONS
+//       - link "pictogramme ajouter Créer":
+//         - img "pictogramme ajouter"
+//         - button "Créer"
+//       - heading "Liste des organisations :" [level=1]
+//       - table:
+//         - rowgroup:
+//           - row "Nom Contact Numéro de téléphone Consulter":
+//             - cell "Nom"
+//             - cell "Contact"
+//             - cell "Numéro de téléphone"
+//             - cell "Consulter"
+//         - rowgroup:
+//           - row /IléCompany Iléana BOLAS \\d+ voir l'organisation en détail/:
+//             - cell "IléCompany"
+//             - cell "Iléana BOLAS"
+//             - cell /\\d+/
+//             - cell "voir l'organisation en détail":
+//               - link "voir l'organisation en détail":
+//                 - img "voir l'organisation en détail"
+//       `);
+
+//   });
 
   test("Layout link named 'utilisateurs' should redirect to user page", async ({
     page,
@@ -78,4 +76,5 @@ test.describe("Organisation Page", () => {
       .click();
     await expect(page).toHaveURL(/.*\/add-organisation/);
   });
-});
+
+
