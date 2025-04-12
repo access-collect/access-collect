@@ -68,6 +68,7 @@ body {
 }
 
 @media (max-width: 600px) {
+
   .slick-next,
   .slick-prev {
     display: none !important;
@@ -81,7 +82,6 @@ body {
 .c-btn {
   cursor: pointer;
   position: relative;
-  border-radius: 10px;
   display: inline-block;
   overflow: hidden;
   text-align: center;
@@ -89,6 +89,14 @@ body {
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+}
+
+.c-btn--r10 {
+  border-radius: 10px;
+}
+
+.c-btn--r50 {
+  border-radius: 50px;
 }
 
 .c-btn span {
