@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import CheckboxForm from "../CheckboxForm";
-import { InputFormRequired } from "../inputs/InputFormRequired";
-import { TextAreaForm } from "../TextAreaForm";
+import CheckboxForm from "../inputs/CheckboxForm";
+import { InputForm } from "../inputs/InputForm";
+import { TextAreaForm } from "../inputs/TextAreaForm";
 import ReCAPTCHA from "react-google-recaptcha";
 import OrangeButton from "../button/orangeButton";
 import Image from "next/image";
 
-const FormContact = () => {
+const ContactForm = () => {
   const handleSubmit = (formData: FormData) => {
     fetch("/api/contact", {
       method: "POST",
@@ -49,21 +49,27 @@ const FormContact = () => {
     <>
       <div className="lg:flex lg:justify-around lg:items-center lg:mt-32 xl:mt-48">
         <div className="hidden lg:block">
-          <Image src='/contact.png' alt='image décoratif pour nous contacter' width={600} height={1} className="rounded-lg" />
+          <Image
+            src="/contact.png"
+            alt="image décoratif pour nous contacter"
+            width={600}
+            height={1}
+            className="rounded-lg"
+          />
         </div>
         <div>
           <form action={handleSubmit}>
             <div className="mt-8 px-4 py-4 shadow-md shadow-lightOliveGreen bg-white rounded-lg flex flex-col items-center justify-center gap-4 w-[90%] mx-auto lg:w-full lg:px-16 lg:py-10 xl:px-36">
               <div>
-                <InputFormRequired
+                <InputForm
                   type="text"
                   name="name"
                   label="Nom"
                   placeholder="Nom *"
                 />
-              </div >
+              </div>
               <div>
-                <InputFormRequired
+                <InputForm
                   type="email"
                   name="email"
                   label="Adresse mail"
@@ -92,16 +98,18 @@ const FormContact = () => {
                     onExpired={handleExpired}
                   />
                 </div>
-                <OrangeButton label="Valider" type="submit" disabled={!isVerified} />
-              </div >
+                <OrangeButton
+                  label="Valider"
+                  type="submit"
+                  disabled={!isVerified}
+                />
+              </div>
             </div>
           </form>
         </div>
       </div>
-
-
     </>
   );
 };
 
-export default FormContact;
+export default ContactForm;

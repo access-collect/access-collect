@@ -1,11 +1,17 @@
-export const InputFormHome = ({
+export const InputFormBlue = ({
   name,
   label,
   placeholder,
+  type,
+  isRequired = true,
+  minLength = 1,
 }: {
   name: string;
   label: string;
   placeholder: string;
+  type: string;
+  isRequired?: boolean;
+  minLength?: number;
 }) => {
   return (
     <>
@@ -16,9 +22,10 @@ export const InputFormHome = ({
         <input
           className="p-2 bg-transparentLightOrange text-midnightBlue text-sm rounded-md  w-72 h-8 md:w-96"
           name={name}
-          type="text"
+          type={type}
           placeholder={placeholder}
-          required
+          required={isRequired}
+          minLength={minLength}
         />
       </div>
     </>

@@ -68,7 +68,6 @@ body {
 }
 
 @media (max-width: 600px) {
-
   .slick-next,
   .slick-prev {
     display: none !important;

@@ -1,7 +1,7 @@
 "use client";
 import { errorAlert, successAlert } from "@/app/components/alert";
 import OrangeButton from "@/app/components/button/orangeButton";
-import { InputPasswordHome } from "@/app/components/inputs/InputPasswordHome";
+import { InputFormBlue } from "@/app/components/inputs/InputFormBlue";
 import { updatePassword } from "@/lib/userQuery";
 import Image from "next/image";
 import { redirect, useSearchParams } from "next/navigation";
@@ -65,13 +65,19 @@ const ResetPasswordPage = () => {
             className="flex flex-col align-center gap-4 px-3 my-4"
           >
             <div id="warning" className="text-red-500 text-xs font-title"></div>
-            <InputPasswordHome
+            <InputFormBlue
               name="newPassword"
               label={"Entrez votre nouveau mot de passe :"}
+              placeholder={"Entrez votre nouveau mot de passe*"}
+              type="password"
+              minLength={8}
             />
-            <InputPasswordHome
+            <InputFormBlue
               name="newPasswordRepeat"
               label={"Confirmez votre nouveau mot de passe :"}
+              placeholder={"Confirmez votre nouveau mot de passe*"}
+              type="password"
+              minLength={8}
             />
 
             <OrangeButton route="/login" label={"REINITIALISATION"} />

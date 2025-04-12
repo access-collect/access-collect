@@ -1,16 +1,27 @@
 import { boolean } from "drizzle-orm/mysql-core";
 
-const OrangeButton = ({ label, route, type = "button", disabled = false }: { label: string; type?: "button" | "submit", route?: string, disabled?: boolean }) => {
+const OrangeButton = ({
+  label,
+  route,
+  type = "button",
+  disabled = false,
+}: {
+  label: string;
+  type?: "button" | "submit";
+  route?: string;
+  disabled?: boolean;
+}) => {
   return (
     <>
       <button
         type={type}
         onClick={() => route}
         disabled={disabled}
-        className={`${disabled
-          ? "bg-gray-400 text-gray-600 cursor-not-allowed"
-          : "c-btn--orange text-midnightBlue"
-          } c-btn c-btn--r50 px-16 py-4 font-title uppercase mb-4 text-lg transition-all duration-200 lg:px-32`}
+        className={`${
+          disabled
+            ? "bg-gray-400 text-gray-600 cursor-not-allowed"
+            : "c-btn--orange text-midnightBlue"
+        } c-btn c-btn--r50 px-16 py-4 font-title uppercase mb-4 text-lg transition-all duration-200 lg:px-32`}
       >
         <span>{label}</span>
       </button>
