@@ -1,8 +1,10 @@
 "use client";
 
+import React, { useRef, useState } from "react";
 import CheckboxForm from "../CheckboxForm";
 import { InputFormRequired } from "../inputs/InputFormRequired";
 import { TextAreaForm } from "../TextAreaForm";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const FormContact = () => {
   const handleSubmit = (formData: FormData) => {
@@ -11,6 +13,35 @@ const FormContact = () => {
       body: formData,
     });
   };
+
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [isVerified, setIsVerified] = useState(false);
+
+  async function handleCaptchaSubmission(token: string | null) {
+    try {
+      if (token) {
+        await fetch("/api/recaptcha", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        });
+        setIsVerified(true);
+      }
+    } catch (e) {
+      setIsVerified(false);
+    }
+  }
+
+  const handleChange = (token: string | null) => {
+    handleCaptchaSubmission(token);
+  };
+
+  function handleExpired() {
+    setIsVerified(false);
+  }
 
   return (
     <>
@@ -45,7 +76,14 @@ const FormContact = () => {
               value="En soumettant ce formulaire, j'accepte que les informations saisies soient utilisées dans le but de me recontacter."
             />
           </div>
-          <button type="submit">Valider</button>
+          <ReCAPTCHA
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+            ref={recaptchaRef}
+            onChange={handleChange}
+            onExpired={handleExpired}
+            data-size="compact"
+          />
+          <button type="submit" disabled={!isVerified}>Valider</button>
         </form>
       </div>
     </>
