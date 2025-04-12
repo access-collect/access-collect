@@ -91,6 +91,14 @@ body {
   white-space: nowrap;
 }
 
+.c-btn--r10 {
+  border-radius: 10px;
+}
+
+.c-btn--r50 {
+  border-radius: 50px;
+}
+
 .c-btn span {
   position: relative;
   z-index: 2;
