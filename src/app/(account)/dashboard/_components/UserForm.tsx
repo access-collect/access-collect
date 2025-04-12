@@ -3,8 +3,6 @@ import { errorAlert, successAlert } from "@/app/components/alert";
 import CancelButton from "@/app/components/button/cancelButton";
 import OrangeButton from "@/app/components/button/orangeButton";
 import { InputForm } from "@/app/components/inputs/InputForm";
-import { InputFormRequired } from "@/app/components/inputs/InputFormRequired";
-import { InputPassword } from "@/app/components/inputs/InputPassword";
 import { Organisation } from "@/lib/schema/organisation";
 import { addUser } from "@/lib/userQuery";
 import { useRouter } from "next/navigation";
@@ -36,17 +34,31 @@ const UserForm = ({
       action={handleFormAction}
       className="flex flex-col align-center gap-4 px-3 my-4"
     >
-      <InputFormRequired name={"name"} label={"Nom: "} placeholder={"Nom"} />
-      <InputFormRequired
+      <InputForm
+        name={"name"}
+        type="text"
+        label={"Nom: "}
+        placeholder={"Nom"}
+      />
+      <InputForm
         name={"email"}
         label={"Email: "}
+        type="email"
         placeholder={"Email"}
       />
-      <InputPassword name={"password"} label={"Mot de passe: "} />
+      <InputForm
+        name={"password"}
+        label={"Mot de passe: "}
+        placeholder={"Mot de passe*"}
+        type="password"
+        minLength={8}
+      />
       <InputForm
         name={"phone"}
+        type="tel"
         label={"N° de téléphone: "}
         placeholder={"Téléphone"}
+        minLength={10}
       />
 
       <div className="flex flex-col">

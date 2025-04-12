@@ -1,4 +1,4 @@
-import FormContact from "@/app/components/form/FormContact";
+import ContactForm from "@/app/components/form/contactForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,9 +13,8 @@ const ContactPage = () => {
         <h1 className="text-brightOrange text-center text-xl mt-8 font-title font-bold tracking-widest">
           FORMULAIRE DE CONTACT
         </h1>
-        <FormContact />
+        <ContactForm />
       </div>
-
     </>
   );
 };

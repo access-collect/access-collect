@@ -9,8 +9,8 @@ import { Organisation } from "@/lib/schema/organisation";
 import { useEffect, useState } from "react";
 import OrangeButton from "@/app/components/button/orangeButton";
 import { User } from "@/lib/schema/user";
+import { InputForm } from "@/app/components/inputs/InputForm";
 import { useRouter } from "next/navigation";
-import { InputFormRequired } from "@/app/components/inputs/InputFormRequired";
 import { errorAlert, successAlert } from "@/app/components/alert";
 
 export const CollectedPointForm = ({
@@ -75,15 +75,17 @@ export const CollectedPointForm = ({
         action={handleSubmit}
         className="flex flex-col align-center gap-4 px-3 my-4"
       >
-        <InputFormRequired
+        <InputForm
           name={"name"}
           label={"Nom du point de collecte :"}
           placeholder={"Point Exemple"}
+          type="text"
         />
-        <InputFormRequired
+        <InputForm
           name={"address"}
           label={"Adresse: "}
           placeholder={"3 rue de l'exemple 01234 Exemple-Ville"}
+          type="text"
         />
         <div className="text-oliveGreen uppercase font-title text-sm">
           {"Jour de collecte: "}

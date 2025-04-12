@@ -2,7 +2,7 @@
 import { errorAlert, successAlert } from "@/app/components/alert";
 import CancelButton from "@/app/components/button/cancelButton";
 import OrangeButton from "@/app/components/button/orangeButton";
-import { InputFormRequired } from "@/app/components/inputs/InputFormRequired";
+import { InputForm } from "@/app/components/inputs/InputForm";
 import { addOrganisation } from "@/lib/organisationQuery";
 import { useRouter } from "next/navigation";
 const OrgaForm = () => {
@@ -25,26 +25,35 @@ const OrgaForm = () => {
       action={handleSubmit}
       className="flex flex-col align-center gap-4 px-3 my-4"
     >
-      <InputFormRequired name={"name"} label={"Nom: "} placeholder={"Nom"} />
-      <InputFormRequired
+      <InputForm
+        name={"name"}
+        label={"Nom: "}
+        placeholder={"Nom"}
+        type="text"
+      />
+      <InputForm
         name={"address"}
         label={"Adresse: "}
         placeholder={"Adresse"}
+        type="text"
       />
-      <InputFormRequired
+      <InputForm
         name={"phone"}
         label={"N° de téléphone: "}
         placeholder={"Téléphone"}
+        type="tel"
       />
-      <InputFormRequired
+      <InputForm
         name={"contact"}
         label={"Nom du contact: "}
         placeholder={"Contact"}
+        type="text"
       />
-      <InputFormRequired
+      <InputForm
         name={"agrement"}
         label={"N° d'agrément: "}
         placeholder={"N° d'agrément"}
+        type="text"
       />
       <div className="flex justify-around">
         <CancelButton path={"/dashboard/organisation"} />
