@@ -16,7 +16,7 @@ const OliveGreenButton = ({
 }) => {
   return (
     <>
-      <div className="w-[150px] h-[150px] shadow-md shadow-lightOliveGreen mx-6 rounded-lg  my-1 lg:my-6 flex flex-col justify-center items-center md:w-[360px] md:h-[68px] md:flex-row-reverse md:justify-end">
+      <div className="flex flex-col md:flex-row-reverse justify-center items-center md:justify-end w-[150px] md:w-[360px] h-[150px] md:h-[68px] shadow-md shadow-lightOliveGreen mx-6 my-1 lg:my-6 rounded-lg">
         <Image
           src={svg}
           alt={alt}
