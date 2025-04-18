@@ -56,13 +56,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return token;
       }
 
-      //@ts-ignore
+   
       user && (token.user = user);
       return token;
     },
 
     async session({ session, token }) {
-      //@ts-ignore
+      //@ts-expect-error
       session.user.id = token.id;
       return session;
     },
