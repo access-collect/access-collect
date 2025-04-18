@@ -1,9 +1,11 @@
-export const InputPassword = ({
+export const TextAreaForm = ({
   name,
   label,
+  placeholder,
 }: {
   name: string;
   label: string;
+  placeholder: string;
 }) => {
   return (
     <>
@@ -14,12 +16,12 @@ export const InputPassword = ({
         >
           {label}
         </label>
-        <input
-          className="p-2 bg-transparentLightOrange rounded-md  w-72 h-8 md:w-96"
-          type="password"
+        <textarea
+          className={`p-2 bg-transparentLightOrange text-midnightBlue text-sm rounded-md w-72 h-auto md:w-96`}
           name={name}
-          minLength={8}
+          placeholder={placeholder}
           required
+          rows={5}
         />
       </div>
     </>
