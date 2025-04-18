@@ -1,10 +1,9 @@
 const OrangeButton = ({
   label,
-  route,
   onClick,
 }: {
   label: string;
-  route?: string;
+ 
   onClick?: () => void;
 }) => {
   return (
