@@ -5,9 +5,10 @@ import { InputFormRequired } from "@/app/components/inputs/InputFormRequired";
 import { addOrganisation } from "@/lib/organisationQuery";
 import { useRouter } from "next/navigation";
 const OrgaForm = () => {
-  const router = useRouter() ;
+  const router = useRouter();
   const handleRedirect = () => {
-    router.push("/dashboard/organisation")}
+    router.push("/dashboard/organisation");
+  };
   return (
     <form
       action={addOrganisation}

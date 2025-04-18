@@ -21,9 +21,10 @@ export const CollectedPointForm = ({
   const [clients, setClients] = useState<User[]>([]);
   const [selectedClient, setSelectedClient] = useState<string>("");
   const [checkDeliveryDay, setCheckDeliveryDay] = useState<string[]>([]);
-  const router = useRouter() ;
+  const router = useRouter();
   const handleRedirect = () => {
-    router.push("/dashboard/collected-point-list")}
+    router.push("/dashboard/collected-point-list");
+  };
 
   const handleChange = (e: { target: { checked: boolean; value: string } }) => {
     let deliveryDays: string[] = checkDeliveryDay;

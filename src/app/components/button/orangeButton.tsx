@@ -1,4 +1,12 @@
-const OrangeButton = ({ label, route , onClick }: { label: string; route?: string; onClick?:()=> void}) => {
+const OrangeButton = ({
+  label,
+  route,
+  onClick,
+}: {
+  label: string;
+  route?: string;
+  onClick?: () => void;
+}) => {
   return (
     <>
       <button
