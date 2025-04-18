@@ -13,14 +13,16 @@ export default async function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth()
-  console.log(session)
+  const session = await auth();
+  console.log(session);
+  if (!session?.user) return null;
+
   return (
     <ClientLayout session={session}>
-    <div className="flex">
-      <DashboardLinks session={session} />
-      {children}
-    </div>
+      <div className="flex">
+        <DashboardLinks session={session} />
+        {children}
+      </div>
     </ClientLayout>
   );
 }
