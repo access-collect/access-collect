@@ -77,6 +77,7 @@ const ResetPasswordPage = () => {
 
             <OrangeButton
               onClick={redirectToLogin}
+              type="submit"
               label={"REINITIALISATION"}
             />
           </form>
