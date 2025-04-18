@@ -36,6 +36,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         ) {
           throw new Error("Wrong password");
         }
+
         return {
           id: userData.id,
           email: userData.email,
@@ -45,22 +46,29 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  callbacks: {async jwt({ token, trigger, session , user }) {
-    if (trigger === "update") {
-      // Note, that `session` can be any arbitrary object, remember to validate it!
-      token.type = session?.type;
-      token.name = session?.name;
-      return token;
-    }
 
-    //@ts-ignore
-    user && (token.user = user);
-    return token;
+  callbacks: {
+    async jwt({ token, trigger, session, user }) {
+      if (trigger === "update") {
+        // Note, that `session` can be any arbitrary object, remember to validate it!
+        token.type = session?.type;
+        token.name = session?.name;
+        return token;
+      }
+
+      //@ts-ignore
+      user && (token.user = user);
+      return token;
+    },
+
+    async session({ session, token }) {
+      //@ts-ignore
+      session.user.id = token.id;
+      return session;
+    },
+
+    async authorized({ auth }) {
+      return !!auth;
+    },
   },
-    
-  async session({ session, token }) {
-    //@ts-ignore
-    session.user.id = token.id;
-    return session;
-  },},
 });

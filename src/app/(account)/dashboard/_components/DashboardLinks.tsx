@@ -1,13 +1,10 @@
-
 import Link from "next/link";
 import Image from "next/image";
 import { headers } from "next/headers";
-import { signOut, useSession } from "next-auth/react";
-import { Session } from "inspector/promises";
 
+import SignOutButton from "@/app/components/button/signout";
 
-const DashboardLinks = async ({session}:{session:any}) => {
-  
+const DashboardLinks = async ({ session }: { session: any }) => {
   const headersList = headers();
   const activePath: string | null = headersList.get("x-invoke-path");
 
@@ -33,6 +30,27 @@ const DashboardLinks = async ({session}:{session:any}) => {
       alt: "Accéder à la page dashboard/point de collecte",
       name: "collectPointLink",
     },
+    {
+      title: "hey",
+      path: "/dashboard/collected-point-list",
+      picto: "/collectPoint.svg",
+      alt: "Accéder à la page dashboard/point de collecte",
+      name: "collectPointLink",
+    },
+    {
+      title: "Salut",
+      path: "/dashboard/collected-point-list",
+      picto: "/collectPoint.svg",
+      alt: "Accéder à la page dashboard/point de collecte",
+      name: "collectPointLink",
+    },
+    {
+      title: "CC",
+      path: "/dashboard/collected-point-list",
+      picto: "/collectPoint.svg",
+      alt: "Accéder à la page dashboard/point de collecte",
+      name: "collectPointLink",
+    },
   ];
   return (
     <div
@@ -40,9 +58,10 @@ const DashboardLinks = async ({session}:{session:any}) => {
         md:bg-transparentLightOrange"
     >
       <div>
-        <p>Session de :{session?.user?.email}</p>
+        <p>Session de :{session.user.email}</p>
       </div>
-  
+      <div></div>
+
       {links.map((link) => (
         <Link href={link.path} key={link.title}>
           <div
@@ -54,14 +73,13 @@ const DashboardLinks = async ({session}:{session:any}) => {
           >
             <Image src={link.picto} alt={link.alt} width={70} height={100} />
             <div className="text-center text-midnightBlue text-xl font-subTitle">
-              
+              {link.title}
             </div>
-            <div>
-            
-            </div>
+            <div></div>
           </div>
         </Link>
       ))}
+      <SignOutButton />
     </div>
   );
 };
