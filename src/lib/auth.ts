@@ -5,9 +5,15 @@ import Bcrypt from "bcryptjs";
 import CredentialsProvider from "@auth/core/providers/credentials";
 import { getUserDataWithEmail } from "./userQuery";
 
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db),
   secret: process.env.NEXTAUTH_SECRET,
+
+  session: {
+    strategy: "jwt",
+  },
+
   providers: [
     CredentialsProvider({
       type: "credentials",
@@ -30,6 +36,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         ) {
           throw new Error("Wrong password");
         }
+
         return {
           id: userData.id,
           email: userData.email,
@@ -39,5 +46,29 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  callbacks: {},
+
+  callbacks: {
+    async jwt({ token, trigger, session, user }) {
+      if (trigger === "update") {
+        // Note, that `session` can be any arbitrary object, remember to validate it!
+        token.type = session?.type;
+        token.name = session?.name;
+        return token;
+      }
+
+   
+      user && (token.user = user);
+      return token;
+    },
+
+    async session({ session, token }) {
+      //@ts-expect-error
+      session.user.id = token.id;
+      return session;
+    },
+
+    async authorized({ auth }) {
+      return !!auth;
+    },
+  },
 });
