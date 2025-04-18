@@ -20,7 +20,7 @@ export const collectedData = pgTable("collectedData", {
   quantity: integer("quantity"),
   weight: decimal("weight"),
   collectPointId: text("collectPointId"),
-  vehicleId: text("vehicleId").references(() => vehicle.id),
+  vehicleId: text("vehicleId"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow(),
 });

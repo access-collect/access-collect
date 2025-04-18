@@ -26,9 +26,7 @@ export const collectPoint = pgTable("collectPoint", {
   clientId: text("user_id")
     .references(() => user.id, { onDelete: "cascade" })
     .notNull(),
-  organisationId: text("organisationId")
-    .references(() => organisation.id, { onDelete: "cascade" })
-    .notNull(),
+  organisationId: text("organisationId"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow(),
 });
