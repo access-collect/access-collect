@@ -13,10 +13,13 @@ export default async function OrganisationsPage() {
         {"ORGANISATIONS"}
       </div>
       <Link href="/dashboard/add-organisation">
-        <OliveGreenButton name={"Créer une organisation"} title={"Créer"} svg={"/create.svg"} alt={"pictogramme ajouter"} />
+        <OliveGreenButton
+          name={"Créer une organisation"}
+          title={"Créer"}
+          svg={"/create.svg"}
+          alt={"pictogramme ajouter"}
+        />
       </Link>
-     
-     
 
       <div className="mx-4 flex justify-center flex-col">
         <h1 className="text-2xl font-title text-oliveGreen text-center">
@@ -44,18 +47,16 @@ export default async function OrganisationsPage() {
                   <td className="px-8">{organisation.contact}</td>
                   <td className="px-8">{organisation.phoneNumber}</td>
                   <td className=" flex justify-center">
-                  <Link
-                    href={`/dashboard/organisation/${organisation.id}`}
-                  >
-                    <Image
-                      src="/consulter.svg"
-                      alt="voir l'organisation en détail"
-                      width={40}
-                      height={80}
-                      className=""
-                    />
-                  </Link>
-                </td>
+                    <Link href={`/dashboard/organisation/${organisation.id}`}>
+                      <Image
+                        src="/consulter.svg"
+                        alt="voir l'organisation en détail"
+                        width={40}
+                        height={80}
+                        className=""
+                      />
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>

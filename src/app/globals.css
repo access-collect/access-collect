@@ -123,8 +123,7 @@ body {
 }
 .cancelButton {
   background-color: #ffffff;
-  border: 1px solid #FFC374;
-  color: #FFC374;
-  font-family: 'verdana';
+  border: 1px solid #ffc374;
+  color: #ffc374;
+  font-family: "verdana";
 }
-

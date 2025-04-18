@@ -11,7 +11,12 @@ export default async function UsersPage() {
         {"UTILISATEURS"}
       </div>
       <Link href="/dashboard/add-user">
-        <OliveGreenButton name={"Créer un utilisateur"} title={"Créer"} svg={"/create.svg"} alt={"pictogramme ajouter"} />
+        <OliveGreenButton
+          name={"Créer un utilisateur"}
+          title={"Créer"}
+          svg={"/create.svg"}
+          alt={"pictogramme ajouter"}
+        />
       </Link>
 
       <div className="mx-4 flex justify-center flex-col">
