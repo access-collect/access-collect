@@ -14,8 +14,7 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
-  console.log(session);
-  if (!session?.user) return null;
+  if (!session?.user) return <div>{"Vous n'êtes pas authentifié"}</div>;
 
   return (
     <ClientLayout session={session}>
