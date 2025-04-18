@@ -42,7 +42,7 @@ const OrgaForm = () => {
       />
       <div className="flex justify-around">
         <CancelButton />
-        <OrangeButton label={"Confirmer"} route={"/dashboard/organisation"} />
+        <OrangeButton label={"Confirmer"} type="submit" route={"/dashboard/organisation"} />
       </div>
     </form>
   );

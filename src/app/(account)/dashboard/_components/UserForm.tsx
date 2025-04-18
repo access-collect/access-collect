@@ -98,7 +98,7 @@ const UserForm = ({
       </div>
       <div className="flex justify-around">
         <CancelButton />
-        <OrangeButton label={"Confirmer"} route={""} />
+        <OrangeButton label={"Confirmer"} type="submit" route={"/dashboard/user"} />
       </div>
     </form>
   );

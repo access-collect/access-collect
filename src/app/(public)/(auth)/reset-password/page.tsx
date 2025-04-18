@@ -80,7 +80,7 @@ const ResetPasswordPage = () => {
               minLength={8}
             />
 
-            <OrangeButton route="/login" label={"REINITIALISATION"} />
+            <OrangeButton route="/login" type="submit" label={"REINITIALISATION"} />
           </form>
         </div>
       </div>
