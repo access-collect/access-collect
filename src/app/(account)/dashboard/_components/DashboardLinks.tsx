@@ -30,27 +30,7 @@ const DashboardLinks = async ({ session }: { session: any }) => {
       alt: "Accéder à la page dashboard/point de collecte",
       name: "collectPointLink",
     },
-    {
-      title: "hey",
-      path: "/dashboard/collected-point-list",
-      picto: "/collectPoint.svg",
-      alt: "Accéder à la page dashboard/point de collecte",
-      name: "collectPointLink",
-    },
-    {
-      title: "Salut",
-      path: "/dashboard/collected-point-list",
-      picto: "/collectPoint.svg",
-      alt: "Accéder à la page dashboard/point de collecte",
-      name: "collectPointLink",
-    },
-    {
-      title: "CC",
-      path: "/dashboard/collected-point-list",
-      picto: "/collectPoint.svg",
-      alt: "Accéder à la page dashboard/point de collecte",
-      name: "collectPointLink",
-    },
+    
   ];
   return (
     <div
