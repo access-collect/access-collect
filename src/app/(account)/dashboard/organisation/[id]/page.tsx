@@ -1,29 +1,16 @@
-"use client"
-import { confirmAlert, errorAlert, successAlert } from "@/app/components/alert";
 import OliveGreenButton from "@/app/components/button/OliveGreenButton";
-import { deleteOrganisationById, getOrganisation } from "@/lib/organisationQuery";
-import { useRouter } from "next/navigation";
+import {  getOrganisation } from "@/lib/organisationQuery";
 import Label from "../../_components/Label";
+import { DeleteOrganisation } from "../_components/deleteOrganisationButton";
 
 export default async function OrganisationsPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const router = useRouter();
   const organisation = await getOrganisation(params.id)
-
-  const deleteOrganisation = async () => {
-    const response = await confirmAlert("Suppression de l'organisation", "Veuillez confirmer la suppression de l'organisation svp ?")
-    if (response.isConfirmed) {
-      const result = await deleteOrganisationById(organisation.id)
-      if (result.error) {
-        errorAlert("Une erreur s'est produite lors de la suppression")
-      }
-      successAlert("L'organisation a bien été supprimée")
-      router.push('/dashboard/organisation')
-    }
-    return;
+  if(!organisation){
+    return
   }
   return (
     <div className="flex gap-y-4 flex-col w-full">
@@ -33,7 +20,7 @@ export default async function OrganisationsPage({
       <div className="flex flex-row justify-around justify-center">
 
         <OliveGreenButton name={"Modifier une organisation"} title={"Modifier"} svg={"/edit.svg"} alt={"pictogramme modifier"} />
-        <OliveGreenButton name={"Supprimer une organisation"} title={"Supprimer"} svg={"/delete.svg"} alt={"pictogramme supprimer"} action={deleteOrganisation} />
+        <DeleteOrganisation organisationId={organisation.id}/>
       </div>
       <div className="flex justify-center">
         <div className="shadow-md shadow-lightOliveGreen mx-6 rounded-b-lg my-6 w-54 md:w-2/3">
