@@ -5,7 +5,7 @@ import { InputPasswordHome } from "@/app/components/inputs/InputPasswordHome";
 import { redirectToLogin } from "@/lib/actions";
 import { updatePassword } from "@/lib/userQuery";
 import Image from "next/image";
-import { redirect, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const ResetPasswordPage = () => {
   const searchParams = useSearchParams();
@@ -38,7 +38,7 @@ const ResetPasswordPage = () => {
       successAlert(
         "Votre mot de passe a bien été mis à jour. Vous avez été redirigé vers la page de connexion.",
       );
-     redirectToLogin()
+      redirectToLogin();
     }
   };
 
@@ -75,7 +75,10 @@ const ResetPasswordPage = () => {
               label={"Confirmez votre nouveau mot de passe :"}
             />
 
-            <OrangeButton onClick={redirectToLogin} label={"REINITIALISATION"} />
+            <OrangeButton
+              onClick={redirectToLogin}
+              label={"REINITIALISATION"}
+            />
           </form>
         </div>
       </div>

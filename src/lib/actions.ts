@@ -4,17 +4,14 @@ export function redirectToHomepage() {
   redirect("/");
 }
 
-
 export function redirectToLogin() {
-  redirect("/login")
+  redirect("/login");
 }
-
 
 export function redirectToDashboard() {
-  redirect("/dashboard")
+  redirect("/dashboard");
 }
 
-
 export function redirectToForgottenPassword() {
-  redirect("/forgotten-password")
+  redirect("/forgotten-password");
 }

@@ -3,7 +3,7 @@ const OrangeButton = ({
   onClick,
 }: {
   label: string;
- 
+
   onClick?: () => void;
 }) => {
   return (
