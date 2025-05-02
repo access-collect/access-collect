@@ -3,7 +3,7 @@ import { getOrganisation } from "@/lib/organisationQuery";
 import Label from "../../_components/Label";
 import { DeleteOrganisation } from "../_components/deleteOrganisationButton";
 
-export default async function OrganisationsPage({
+export default async function OrganisationPage({
   params,
 }: {
   params: { id: string };
@@ -15,7 +15,7 @@ export default async function OrganisationsPage({
   return (
     <div className="flex gap-y-4 flex-col w-full">
       <div className="text-midnightBlue font-title font-bold  text-2xl text-center mt-4">
-        {"ORGANISATIONS"}
+        {"ORGANISATION"}
       </div>
       <div className="flex flex-row justify-around justify-center">
         <OliveGreenButton
