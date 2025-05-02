@@ -1,5 +1,6 @@
 "use client";
 import OrangeButton from "@/app/components/button/orangeButton";
+import { redirectToHomepage } from "@/lib/actions";
 
 const ForgottenPasswordError = () => {
   return (
@@ -8,7 +9,7 @@ const ForgottenPasswordError = () => {
       <p className="text-midnightBlue text-center px-6 py-4">
         {"Il semblerait qu'un problème soit survenu."}
       </p>
-      <OrangeButton label={"ACCUEIL"} route={"/"} />
+      <OrangeButton label={"ACCUEIL"} onClick={redirectToHomepage} />
     </div>
   );
 };

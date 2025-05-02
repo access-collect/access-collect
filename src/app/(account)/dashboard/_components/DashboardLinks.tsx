@@ -40,7 +40,7 @@ const DashboardLinks = async ({ session }: { session: any }) => {
       <div>
         <p>Session de :{session.user.email}</p>
       </div>
-      <div></div>
+      
 
       {links.map((link) => (
         <Link href={link.path} key={link.title}>

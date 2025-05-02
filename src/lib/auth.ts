@@ -48,18 +48,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
 
   callbacks: {
-    async jwt({ token, trigger, session, user }) {
-      if (trigger === "update") {
-        // Note, that `session` can be any arbitrary object, remember to validate it!
-        token.type = session?.type;
-        token.name = session?.name;
-        return token;
-      }
+    // async jwt({ token, trigger, session, user }) {
+    //   if (trigger === "update") {
+    //     // Note, that `session` can be any arbitrary object, remember to validate it!
+    //     token.type = session?.type;
+    //     token.name = session?.name;
+    //     return token;
+    //   }
 
    
-      user && (token.user = user);
-      return token;
-    },
+    //   user && (token.user = user);
+    //   return token;
+    // },
 
     async session({ session, token }) {
       //@ts-expect-error
