@@ -1,5 +1,5 @@
 "use client";
-import { redirectToHomepage } from "@/lib/actions";
+import { redirectToLogin } from "@/lib/actions";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { InputFormHome } from "./inputs/InputFormHome";
@@ -22,7 +22,7 @@ export const getLogData = async (formData: any) => {
       warningDiv.innerHTML += `${warningMessage}`;
     }
   } else {
-    redirectToHomepage();
+    redirectToLogin()
   }
 };
 
