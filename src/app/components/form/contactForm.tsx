@@ -32,7 +32,11 @@ const ContactForm = () => {
         });
         setIsVerified(true);
       }
-    } catch (e) {
+    } catch (error) {
+      console.error("[Recaptcha] An error occurred while verifying token:", {
+        token,
+        error,
+      });
       setIsVerified(false);
     }
   }

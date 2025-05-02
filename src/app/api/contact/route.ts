@@ -32,6 +32,7 @@ export async function POST(req: Request) {
       message: "Email send with success",
     });
   } catch (error) {
+    console.error("Recaptcha verification error:", error);
     return NextResponse.json(
       { success: false, error: "Error sending" },
       { status: 500 },
