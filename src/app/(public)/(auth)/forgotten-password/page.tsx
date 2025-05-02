@@ -51,7 +51,10 @@ const forgottenPasswordPage = () => {
                 label={"Email"}
                 placeholder={"Email"}
               />
-              <OrangeButton onClick={redirectToLogin} label={"REINITIALISATION"} />
+              <OrangeButton
+                onClick={redirectToLogin}
+                label={"REINITIALISATION"}
+              />
             </form>
           </div>
         </div>
