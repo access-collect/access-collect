@@ -7,13 +7,20 @@ import { TextAreaForm } from "../inputs/TextAreaForm";
 import ReCAPTCHA from "react-google-recaptcha";
 import OrangeButton from "../button/orangeButton";
 import Image from "next/image";
+import {successAlert, errorAlert} from "../alert";
 
 const ContactForm = () => {
-  const handleSubmit = (formData: FormData) => {
-    fetch("/api/contact", {
+  const handleSubmit = async (formData: FormData) => {
+    const result= await fetch("/api/contact", {
       method: "POST",
       body: formData,
     });
+    if (result.ok) {
+      successAlert("Votre demande de contact a bien été envoyée");
+    } else {
+      errorAlert("Oups.. Une erreur est survenue");
+      return;
+    }
   };
 
   const recaptchaRef = useRef<ReCAPTCHA>(null);
