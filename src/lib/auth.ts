@@ -59,11 +59,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     //   return token;
     // },
 
-    async session({ session, token }) {
-      //@ts-expect-error
-      session.user.id = token.id;
-      return session;
-    },
+    // async session({ session, token }) {
+    
+    //   session?.user.id = token.id;
+    //   return session;
+    // },
 
     async authorized({ auth }) {
       return !!auth;
