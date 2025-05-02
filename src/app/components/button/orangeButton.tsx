@@ -1,5 +1,3 @@
-import { boolean } from "drizzle-orm/mysql-core";
-
 const OrangeButton = ({
   label,
   route,
