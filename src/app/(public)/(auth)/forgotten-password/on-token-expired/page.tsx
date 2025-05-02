@@ -11,7 +11,10 @@ const ForgottenPasswordError = () => {
           "Il semblerait que le lien de réinitialisation soit expiré. Si vous souhaitez en générer un nouveau cliquez ici : "
         }
       </p>
-      <OrangeButton label={"REINITIALISER"} onClick={redirectToForgottenPassword}/>
+      <OrangeButton
+        label={"REINITIALISER"}
+        onClick={redirectToForgottenPassword}
+      />
     </div>
   );
 };

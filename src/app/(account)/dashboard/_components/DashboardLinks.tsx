@@ -30,7 +30,6 @@ const DashboardLinks = async ({ session }: { session: any }) => {
       alt: "Accéder à la page dashboard/point de collecte",
       name: "collectPointLink",
     },
-    
   ];
   return (
     <div
@@ -40,7 +39,6 @@ const DashboardLinks = async ({ session }: { session: any }) => {
       <div>
         <p>Session de :{session.user.email}</p>
       </div>
-      
 
       {links.map((link) => (
         <Link href={link.path} key={link.title}>

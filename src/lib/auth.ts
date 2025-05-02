@@ -5,7 +5,6 @@ import Bcrypt from "bcryptjs";
 import CredentialsProvider from "@auth/core/providers/credentials";
 import { getUserDataWithEmail } from "./userQuery";
 
-
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db),
   secret: process.env.NEXTAUTH_SECRET,
@@ -56,7 +55,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     //     return token;
     //   }
 
-   
     //   user && (token.user = user);
     //   return token;
     // },

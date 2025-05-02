@@ -22,7 +22,7 @@ export const getLogData = async (formData: any) => {
       warningDiv.innerHTML += `${warningMessage}`;
     }
   } else {
-    redirectToLogin()
+    redirectToLogin();
   }
 };
 
