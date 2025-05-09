@@ -1,4 +1,5 @@
 "use client";
+import { errorAlert, successAlert } from "@/app/components/alert";
 import CancelButton from "@/app/components/button/cancelButton";
 import OrangeButton from "@/app/components/button/orangeButton";
 import { InputForm } from "@/app/components/inputs/InputForm";
@@ -16,9 +17,19 @@ const UserForm = ({
   const [selectedUser, setSelectedUser] = useState("");
   const [selectedOrga, setSelectedOrga] = useState("");
 
+  const handleFormAction = async(formData: FormData) => {
+    const result = await addUser(formData)
+    if(result?.error){
+      errorAlert("Une erreur est survenue lors de l'ajout de l'utilisateur. Veuillez recommencer.")
+      return
+    }
+    successAlert("L'utilisateur a bien été ajouté !")
+
+  }
+
   return (
     <form
-      action={addUser}
+      action={handleFormAction}
       className="flex flex-col align-center gap-4 px-3 my-4"
     >
       <InputFormRequired name={"name"} label={"Nom: "} placeholder={"Nom"} />
@@ -70,6 +81,7 @@ const UserForm = ({
           onChange={(e) => setSelectedOrga(e.target.value)}
           className="block appearance-none bg-transparentLightOrange leading-tight focus:outline-none focus:bg-transparentBrightOrange  text-midnightBlue rounded-md text-sm w-72 h-8 md:w-96"
           id="grid-state"
+          data-testid="organisation-select"
           name="organisationId"
           required
         >
@@ -77,7 +89,7 @@ const UserForm = ({
             {"--Choisir une option--"}
           </option>
           {organisationInfos.map((orga: Organisation, index) => (
-            <option key={index} value={orga.id}>
+            <option key={index} value={orga.id} data-testid={orga.name}>
               {orga.name}
             </option>
           ))}
