@@ -5,6 +5,7 @@ import Bcrypt from "bcryptjs";
 import CredentialsProvider from "@auth/core/providers/credentials";
 import { getUserDataWithEmail } from "./userQuery";
 
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db),
   secret: process.env.NEXTAUTH_SECRET,
@@ -46,25 +47,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
 
-  callbacks: {
-    // async jwt({ token, trigger, session, user }) {
-    //   if (trigger === "update") {
-    //     // Note, that `session` can be any arbitrary object, remember to validate it!
-    //     token.type = session?.type;
-    //     token.name = session?.name;
-    //     return token;
-    //   }
-
-    //   user && (token.user = user);
-    //   return token;
-    // },
-
-    // async session({ session, token }) {
-    
-    //   session?.user.id = token.id;
-    //   return session;
-    // },
-
+  
+    callbacks: {
+      async jwt({token, user}){
+        return {...token, ...user}
+      },
+      async session ({ session, token }) {
+        session.user = token as any ;
+        return session;
+      },
+   
     async authorized({ auth }) {
       return !!auth;
     },
