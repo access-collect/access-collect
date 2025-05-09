@@ -2,9 +2,10 @@
 import { errorAlert, successAlert } from "@/app/components/alert";
 import OrangeButton from "@/app/components/button/orangeButton";
 import { InputPasswordHome } from "@/app/components/inputs/InputPasswordHome";
+import { redirectToLogin } from "@/lib/actions";
 import { updatePassword } from "@/lib/userQuery";
 import Image from "next/image";
-import { redirect, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const ResetPasswordPage = () => {
   const searchParams = useSearchParams();
@@ -37,7 +38,7 @@ const ResetPasswordPage = () => {
       successAlert(
         "Votre mot de passe a bien été mis à jour. Vous avez été redirigé vers la page de connexion.",
       );
-      redirect("/login");
+      redirectToLogin();
     }
   };
 
@@ -49,7 +50,7 @@ const ResetPasswordPage = () => {
       <div className="flex flex-wrap gap-x-4 justify-around gap-y-8 mb-8 mt-8 lg:mt-24">
         <div>
           <Image
-            src="/tri2.png"
+            src="/tri.svg"
             alt="Illustration bacs de tri"
             width={500}
             height={1}
@@ -74,7 +75,10 @@ const ResetPasswordPage = () => {
               label={"Confirmez votre nouveau mot de passe :"}
             />
 
-            <OrangeButton route="/login" label={"REINITIALISATION"} />
+            <OrangeButton
+              onClick={redirectToLogin}
+              label={"REINITIALISATION"}
+            />
           </form>
         </div>
       </div>

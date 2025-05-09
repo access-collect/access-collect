@@ -2,6 +2,7 @@
 import { errorAlert, successAlert } from "@/app/components/alert";
 import OrangeButton from "@/app/components/button/orangeButton";
 import { InputFormHome } from "@/app/components/inputs/InputFormHome";
+import { redirectToLogin } from "@/lib/actions";
 import { sendResetPasswordEmailIfUserExists } from "@/lib/userQuery";
 import Image from "next/image";
 const forgottenPasswordPage = () => {
@@ -25,7 +26,7 @@ const forgottenPasswordPage = () => {
       <div className="flex flex-wrap gap-x-4 justify-around gap-y-8 mb-8 mt-8">
         <div>
           <Image
-            src="/tri2.png"
+            src="/tri.svg"
             alt="Illustration bacs de tri"
             width={500}
             height={1}
@@ -50,7 +51,10 @@ const forgottenPasswordPage = () => {
                 label={"Email"}
                 placeholder={"Email"}
               />
-              <OrangeButton route="/login" label={"REINITIALISATION"} />
+              <OrangeButton
+                onClick={redirectToLogin}
+                label={"REINITIALISATION"}
+              />
             </form>
           </div>
         </div>

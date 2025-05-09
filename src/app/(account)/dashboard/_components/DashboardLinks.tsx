@@ -2,7 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { headers } from "next/headers";
 
-const DashboardLinks = async () => {
+import SignOutButton from "@/app/components/button/signout";
+
+const DashboardLinks = async ({ session }: { session: any }) => {
   const headersList = headers();
   const activePath: string | null = headersList.get("x-invoke-path");
 
@@ -34,6 +36,10 @@ const DashboardLinks = async () => {
       className="w-full md:w-1/3 h-screen md:h-screen flex flex-wrap justify-center md:justify-start md:flex-col md:items-center 
         md:bg-transparentLightOrange"
     >
+      <div>
+        <p>Session de :{session.user.email}</p>
+      </div>
+
       {links.map((link) => (
         <Link href={link.path} key={link.title}>
           <div
@@ -47,9 +53,11 @@ const DashboardLinks = async () => {
             <div className="text-center text-midnightBlue text-xl font-subTitle">
               {link.title}
             </div>
+            <div></div>
           </div>
         </Link>
       ))}
+      <SignOutButton />
     </div>
   );
 };
