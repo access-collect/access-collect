@@ -1,11 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-    await page.goto("/");
-})
+  await page.goto("/");
+});
 
-test('check content of home page', async ({ page }) => {
-    await expect(page.getByRole('main')).toMatchAriaSnapshot(`
+test("check content of home page", async ({ page }) => {
+  await expect(page.getByRole("main")).toMatchAriaSnapshot(`
         - main:
           - img
           - paragraph: Optimisez la collecte des déchets en entreprise avec une solution inclusive et écologique
@@ -74,10 +74,10 @@ test('check content of home page', async ({ page }) => {
         `);
 });
 
-test('check redirection of homepage', async ({ page }) => {
-    await page.getByRole('link', { name: 'Cliquer sur le bouton SE' }).click();
-    //login page
-    await expect(page.getByRole('main')).toMatchAriaSnapshot(`
+test("check redirection of homepage", async ({ page }) => {
+  await page.getByRole("link", { name: "Cliquer sur le bouton SE" }).click();
+  //login page
+  await expect(page.getByRole("main")).toMatchAriaSnapshot(`
       - heading "Bienvenue sur AccessCollect" [level=1]
       - img "Illustration bacs de tri"
       - text: Email
@@ -88,9 +88,9 @@ test('check redirection of homepage', async ({ page }) => {
       - link "Mot de passe oublié ?":
         - paragraph: Mot de passe oublié ?
       `);
-      // CGU page
-      await page.getByRole('link', { name: 'CGU -' }).click();
-      await expect(page.getByRole('main')).toMatchAriaSnapshot(`
+  // CGU page
+  await page.getByRole("link", { name: "CGU -" }).click();
+  await expect(page.getByRole("main")).toMatchAriaSnapshot(`
         - heading "Conditions générales d'utilisation" [level=1]
         - heading /En vigueur au \\d+\\/\\d+\\/\\d+/ [level=2]
         - paragraph: Les présentes conditions générales d'utilisation (dites « CGU ») ont pour objet l'encadrement juridique des modalités de mise à disposition du site et des services par tripluch et de définir les conditions d’accès et d’utilisation des services par « l'Utilisateur ».
@@ -128,9 +128,9 @@ test('check redirection of homepage', async ({ page }) => {
         - 'heading "ARTICLE 7 : Droit applicable et juridiction compétente" [level=3]'
         - paragraph: La législation française s'applique au présent contrat. En cas d'absence de résolution amiable d'un litige né entre les parties, les tribunaux français seront seuls compétents pour en connaître. Pour toute question relative à l’application des présentes CGU, vous pouvez joindre l’éditeur aux coordonnées inscrites dans les Mentions Légales.
         `);
-        //legals
-      await page.getByRole('link', { name: 'Mentions Légales -' }).click();
-      await expect(page.getByRole('main')).toMatchAriaSnapshot(`
+  //legals
+  await page.getByRole("link", { name: "Mentions Légales -" }).click();
+  await expect(page.getByRole("main")).toMatchAriaSnapshot(`
         - heading "Mentions Légales" [level=1]
         - paragraph: "Propriétaire et Responsable du site :"
         - paragraph: La société tripluch,
@@ -142,9 +142,11 @@ test('check redirection of homepage', async ({ page }) => {
         - paragraph: "Hébergement des données :"
         - paragraph: "Serveur AWS : AWS Paris (eu-west-3)"
         `);
-        //confidentiality page
-      await page.getByRole('link', { name: 'Politique de confidentialité' }).click();
-      await expect(page.getByRole('main')).toMatchAriaSnapshot(`
+  //confidentiality page
+  await page
+    .getByRole("link", { name: "Politique de confidentialité" })
+    .click();
+  await expect(page.getByRole("main")).toMatchAriaSnapshot(`
         - heading "Politique de confidentialité" [level=1]
         - heading "tripluch (https://tripluch.fr/)" [level=2]
         - 'heading "ARTICLE 1 : Préambule" [level=3]'
@@ -203,5 +205,5 @@ test('check redirection of homepage', async ({ page }) => {
         - 'heading "ARTICLE 6 : Conditions de modification de la politique de confidentialité" [level=3]'
         - text: /L’éditeur du site tripluch se réserve le droit de pouvoir modifier la présente Politique à tout moment afin d’assurer aux utilisateurs du site sa conformité avec le droit en vigueur\\. Les éventuelles modifications ne sauraient avoir d’incidence sur les achats antérieurement effectués sur le site, lesquels restent soumis à la Politique en vigueur au moment de l’achat et telle qu’acceptée par l’utilisateur lors de la validation de l’achat\\. L’utilisateur est invité à prendre connaissance de cette Politique à chaque fois qu’il utilise nos services, sans qu’il soit nécessaire de l’en prévenir formellement\\. La présente politique, éditée le \\d+\\/\\d+\\/\\d+, a été mise à jour le \\d+\\/\\d+\\/\\d+\\./
         `);
-      //add contact and faq checks
-})
+  //add contact and faq checks
+});

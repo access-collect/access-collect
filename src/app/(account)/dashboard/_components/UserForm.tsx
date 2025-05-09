@@ -17,15 +17,16 @@ const UserForm = ({
   const [selectedUser, setSelectedUser] = useState("");
   const [selectedOrga, setSelectedOrga] = useState("");
 
-  const handleFormAction = async(formData: FormData) => {
-    const result = await addUser(formData)
-    if(result?.error){
-      errorAlert("Une erreur est survenue lors de l'ajout de l'utilisateur. Veuillez recommencer.")
-      return
+  const handleFormAction = async (formData: FormData) => {
+    const result = await addUser(formData);
+    if (result?.error) {
+      errorAlert(
+        "Une erreur est survenue lors de l'ajout de l'utilisateur. Veuillez recommencer.",
+      );
+      return;
     }
-    successAlert("L'utilisateur a bien été ajouté !")
-
-  }
+    successAlert("L'utilisateur a bien été ajouté !");
+  };
 
   return (
     <form
