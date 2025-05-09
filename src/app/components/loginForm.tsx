@@ -1,5 +1,5 @@
 "use client";
-import { redirectToDashboard, redirectToLogin } from "@/lib/actions";
+import { redirectToDashboard} from "@/lib/actions";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { InputFormHome } from "./inputs/InputFormHome";
