@@ -3,7 +3,7 @@ import Image from "next/image";
 const Features = () => {
   return (
     <>
-      <section className="text-midnightBlue mt-24">
+      <section className="text-midnightBlue mt-24" data-testid={"features"}>
         <div className="flex justify-center items-center -ml-2 bg-transparentOliveGreen rounded-r-[50px] w-[90%] rotate-6 md:rotate-3 md:-ml-4">
           <h1 className="text-center text-2xl text-brightOrange font-section py-10 -rotate-6 md:py-10 md:text-4xl md:-rotate-3">
             {"Les fonctionnalités"}
