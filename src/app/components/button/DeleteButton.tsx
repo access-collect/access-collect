@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 
 const DeleteButton = ({
   action,
-  id,
-  path,
+  idToDelete,
+  pathToRedirection,
 }: {
-  action: (id: string) => Promise<
+  action: (idToDelete: string) => Promise<
     | {
         result: {
           deleted: string;
@@ -20,8 +20,8 @@ const DeleteButton = ({
         result?: undefined;
       }
   >;
-  id: string;
-  path: string;
+  idToDelete: string;
+  pathToRedirection: string;
 }) => {
   const router = useRouter();
   const deleteOrganisation = async () => {
@@ -30,14 +30,14 @@ const DeleteButton = ({
       "Veuillez confirmer la suppression de l'organisation svp ?",
     );
     if (response.isConfirmed) {
-      const result = await action(id);
+      const result = await action(idToDelete);
       if (result.error) {
         errorAlert("Une erreur s'est produite lors de la suppression");
         return;
       }
 
       successAlert("L'organisation a bien été supprimée");
-      router.push(path);
+      router.push(pathToRedirection);
     }
   };
   return (
