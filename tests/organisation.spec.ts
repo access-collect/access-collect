@@ -71,7 +71,7 @@ test("Link named 'Créer' should redirect to add-organisation page", async ({
 }) => {
   await page
     .getByRole("link", {
-      name: "pictogramme ajouter Créer",
+      name: "Pictogramme rond avec +",
     })
     .click();
   await expect(page).toHaveURL(/.*\/add-organisation/);

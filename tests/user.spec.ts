@@ -16,6 +16,6 @@ test('the link named "Créer" should redirect to add-user page', async ({
   page,
 }) => {
   await page.goto("/dashboard/user");
-  await page.getByRole("link", { name: "pictogramme ajouter Créer" }).click();
+  await page.getByRole("link", { name: "Pictogramme rond avec +" }).click();
   await expect(page).toHaveURL(/.*\/add-user/);
 });

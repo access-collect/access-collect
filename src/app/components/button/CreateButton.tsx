@@ -8,7 +8,7 @@ const CreateButton = ({ path }: { path: string }) => {
       <div className="flex flex-col md:flex-row-reverse justify-center items-center md:justify-end w-[150px] md:w-[360px] h-[150px] md:h-[68px] shadow-md shadow-lightOliveGreen mx-6 my-1 lg:my-6 rounded-lg">
         <Link href={path}>
           <Image
-            src={"./create.svg"}
+            src={"/create.svg"}
             alt={"Pictogramme rond avec +"}
             width={66}
             height={63}
