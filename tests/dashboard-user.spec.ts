@@ -14,8 +14,16 @@ const organisation: NewOrganisation = {
   agrementNumber: "ABC-123456-DE",
 };
 
-test("check content of user page", async ({ page }) => {
+test.beforeEach(async ({ page }) => {
+  //To do with session = inject user with role admin and need connect the user and navigate to dashboard/user
+  await removeUser("test-add-user@access-collect.fr");
+  await removeOrganisation("Organisation-test-add-user");
+  await injectOrganisation(organisation);
   await page.goto("/dashboard/user");
+});
+//later we need to improve this test => User-Admin experience on dashboard/user
+test("User experience on dashboard/user", async ({ page }) => {
+  //check content of page 
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: UTILISATEURS
     - link "pictogramme ajouter Créer":
@@ -31,42 +39,9 @@ test("check content of user page", async ({ page }) => {
           - cell "Entreprise"
       - rowgroup
     `);
-});
-
-test('the link named "Créer" should redirect to add-user page', async ({
-  page,
-}) => {
-  await removeUser("test-add-user@access-collect.fr");
-  await removeOrganisation("Organisation-test-add-user");
-  await injectOrganisation(organisation);
-  await page.goto("/dashboard/user");
-  await page.getByRole("link", { name: "Pictogramme rond avec +" }).click();
-  await expect(page.locator('body')).toMatchAriaSnapshot(`
-    - text: "UTILISATEUR AJOUTER UN UTILISATEUR : Nom:"
-    - textbox "Nom"
-    - text: "Email:"
-    - textbox "Email"
-    - text: "Mot de passe:"
-    - textbox
-    - text: "N° de téléphone:"
-    - textbox "Téléphone"
-    - text: "Rôle:"
-    - combobox:
-      - option "--Choisir une option--" [selected]
-      - option "superadmin"
-      - option "admin"
-      - option "client"
-      - option "collector"
-    - text: "Organisation:"
-    - combobox:
-      - option "--Choisir une option--" [selected]
-      - option "IléCompany"
-      - text: ;
-    - button "ANNULER"
-    - button "Confirmer"
-    `);
-
-  await page.getByPlaceholder("Nom").click();
+    //go to add-user and create a new user
+    await page.getByRole("link", { name: "pictogramme ajouter Créer" }).click();
+    await page.getByPlaceholder("Nom").click();
   await page.getByPlaceholder("Nom").fill("Test");
   await page.getByPlaceholder("Email").click();
   await page.getByPlaceholder("Email").fill("test@access-collect.fr");
@@ -105,3 +80,4 @@ test('the link named "Créer" should redirect to add-user page', async ({
   await removeUser("test@access-collect.fr");
   await removeOrganisation("Organisation-test-add-user");
 });
+
