@@ -24,10 +24,10 @@ test.beforeEach(async ({ page }) => {
 //later we need to improve this test => User-Admin experience on dashboard/user
 test("User experience on dashboard/user", async ({ page }) => {
   //check content of page 
-  await expect(page.locator("body")).toMatchAriaSnapshot(`
+  await expect(page.locator('body')).toMatchAriaSnapshot(`
     - text: UTILISATEURS
-    - link "pictogramme ajouter Créer":
-      - img "pictogramme ajouter"
+    - img "Pictogramme rond avec +"
+    - link "Créer":
       - button "Créer"
     - heading "Liste des utilisateurs :" [level=1]
     - table:
@@ -40,7 +40,7 @@ test("User experience on dashboard/user", async ({ page }) => {
       - rowgroup
     `);
     //go to add-user and create a new user
-    await page.getByRole("link", { name: "pictogramme ajouter Créer" }).click();
+  await page.getByRole('button', { name: 'Créer' }).click();
     await page.getByPlaceholder("Nom").click();
   await page.getByPlaceholder("Nom").fill("Test");
   await page.getByPlaceholder("Email").click();
@@ -54,12 +54,12 @@ test("User experience on dashboard/user", async ({ page }) => {
     .getByTestId("organisation-select")
     .selectOption({ label: organisation.name });
   await page.getByRole("button", { name: "Confirmer" }).click();
-  await expect(page.getByRole("dialog")).toMatchAriaSnapshot(`
+  await expect(page.getByRole('dialog')).toMatchAriaSnapshot(`
     - dialog:
-      - button "Close this dialog"
+      - button "Fermer la pop up"
       - text: L'utilisateur a bien été ajouté !
     `);
-  await page.getByLabel("Close this dialog").click();
+    await page.getByLabel('Fermer la pop up').click();
   await page
     .getByRole("link", {
       name: "Accéder à la page dashboard/utilisateur Utilisateurs",
