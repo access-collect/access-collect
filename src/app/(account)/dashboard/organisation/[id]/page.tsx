@@ -22,7 +22,7 @@ export default async function OrganisationPage({
         {"ORGANISATION"}
       </div>
       <div className="flex flex-row justify-around justify-center">
-        <EditButton/>
+        <EditButton />
         <DeleteButton
           action={deleteOrganisationById}
           idToDelete={organisation.id}

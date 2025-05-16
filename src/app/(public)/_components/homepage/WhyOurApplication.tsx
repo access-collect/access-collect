@@ -3,7 +3,10 @@ import Image from "next/image";
 const WhyOurApplication = () => {
   return (
     <>
-      <section className="text-midnightBlue mt-24 mx-auto max-w-screen-xl md:mt-10 lg:mt-12">
+      <section
+        className="text-midnightBlue mt-24 mx-auto max-w-screen-xl md:mt-10 lg:mt-12"
+        data-testid={"why-our-app"}
+      >
         <div className="flex justify-center items-center h-24">
           <h1 className="mx-2 relative text-center text-2xl text-brightOrange font-section md:mx-4 md:text-4xl">
             <span className="before:hidden md:before:block md:before:content-[''] md:before:absolute md:before:border md:before:border-midnightBlue md:before:w-16 md:before:w-24 md:before:bottom-0">

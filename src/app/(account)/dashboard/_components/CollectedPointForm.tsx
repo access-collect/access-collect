@@ -112,6 +112,7 @@ export const CollectedPointForm = ({
             {"Nom de l'organisation:"}
           </label>
           <select
+            data-testid={"select-organisation"}
             value={selectedOrga}
             onChange={(e) => setSelectedOrga(e.target.value)}
             className=" block appearance-none bg-transparentLightOrange leading-tight focus:outline-none focus:bg-transparentBrightOrange  text-midnightBlue rounded-md text-sm w-72 h-8 md:w-96"
@@ -137,6 +138,7 @@ export const CollectedPointForm = ({
             {"Nom du client:"}
           </label>
           <select
+            data-testid={"select-client"}
             value={selectedClient}
             onChange={(e) => setSelectedClient(e.target.value)}
             className="block appearance-none bg-transparentLightOrange leading-tight focus:outline-none focus:bg-transparentBrightOrange text-midnightBlue rounded-md text-sm w-72 h-8 md:w-96"
