@@ -1,6 +1,5 @@
-import CreateButton from "@/app/components/button/createButton";
 import CollectedPointList from "../_components/CollectedPointList";
-import Link from "next/link";
+import CreateButton from "@/app/components/button/CreateButton";
 
 const collectedPointList = async () => {
   return (
@@ -9,9 +8,7 @@ const collectedPointList = async () => {
         <div className="text-midnightBlue font-title font-bold text-2xl text-center mt-4">
           {"POINT DE COLLECTE"}
         </div>
-        <Link href="/dashboard/add-collected-point">
-          <CreateButton name={"Créer un point de collecte"} />
-        </Link>
+        <CreateButton path={"/dashboard/add-collected-point"} />
         <div className="mx-4 flex justify-center flex-col">
           <h1 className="text-2xl font-title text-oliveGreen text-center ">
             {"Liste de mes points de collectes : "}
