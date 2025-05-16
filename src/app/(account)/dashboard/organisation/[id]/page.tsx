@@ -25,8 +25,8 @@ export default async function OrganisationPage({
         <EditButton/>
         <DeleteButton
           action={deleteOrganisationById}
-          id={organisation.id}
-          path={"/dashboard/organisation"}
+          idToDelete={organisation.id}
+          pathToRedirection={"/dashboard/organisation"}
         />
       </div>
       <div className="flex justify-center">
