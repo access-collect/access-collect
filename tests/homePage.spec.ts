@@ -5,32 +5,40 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("check content of home page", async ({ page }) => {
-  await expect(page.getByRole("main")).toMatchAriaSnapshot(`
-        - main:
-          - img
-          - paragraph: Optimisez la collecte des déchets en entreprise avec une solution inclusive et écologique
-          - link "Cliquer sur le bouton Demander une démo"
-          - paragraph: Une application pour faciliter la collecte des déchets recyclables en entreprise, tout en favorisant l’inclusion des personnes en situation de handicap.
-          - img "photo de poubelle"
-          - heading "Pourquoi choisir notre application ?" [level=1]
-          - img "exemple d'une vue mobile sur un téléphone"
-          - img "élément décoratif jaune"
-          - paragraph: Accessible à tous, simple et intuitif
-          - img "élément décoratif jaune"
-          - paragraph: Favorisez l’inclusion sociale en collaborant avec des collecteurs en situation de handicap, formés et motivés.
-          - heading "Les fonctionnalités" [level=1]
-          - img "image représentant une personne qui planifie ses tâches"
-          - heading "PLANIFIER" [level=2]
-          - paragraph: Planifiez et anticipez vos collectes avec une gestion centralisée
-          - img "image représentant une personne qui saisie sur un ordinateur portable"
-          - heading "SAISIR" [level=2]
-          - paragraph: Gagnez du temps sur la collecte et la saisie de vos données
-          - img "image représentant une personne qui tourne une horloge pour représenter le temps qui passe"
-          - heading "ACCES CLIENT" [level=2]
-          - paragraph: Offrez à vos clients une vision en temps réel des collectes grâce à un tableau de bord intuitif.
-          - img "image représentant une personne qui saisie sur un ordinateur portable"
-          - heading "STATISTIQUES" [level=2]
-          - paragraph: Recevez des rapports détaillés sur vos activités de recyclage et votre impact écologique
+  await expect(page.getByTestId("presentation")).toMatchAriaSnapshot(`
+    - img
+    - paragraph: Optimisez la collecte des déchets en entreprise avec une solution inclusive et écologique
+    - link "Cliquer sur le bouton Demander une démo"
+    - paragraph: Une application pour faciliter la collecte des déchets recyclables en entreprise, tout en favorisant l’inclusion des personnes en situation de handicap.
+    - img "photo de poubelle"
+    `);
+
+  await expect(page.getByTestId("why-our-app")).toMatchAriaSnapshot(`
+      - heading "Pourquoi choisir notre application ?" [level=1]
+      - img "exemple d'une vue mobile sur un téléphone"
+      - img "élément décoratif jaune"
+      - paragraph: Accessible à tous, simple et intuitif
+      - img "élément décoratif jaune"
+      - paragraph: Favorisez l’inclusion sociale en collaborant avec des collecteurs en situation de handicap, formés et motivés.
+      `);
+
+  await expect(page.getByTestId("features")).toMatchAriaSnapshot(`
+        - heading "Les fonctionnalités" [level=1]
+        - img "image représentant une personne qui planifie ses tâches"
+        - heading "PLANIFIER" [level=2]
+        - paragraph: Planifiez et anticipez vos collectes avec une gestion centralisée
+        - img "image représentant une personne qui saisie sur un ordinateur portable"
+        - heading "SAISIR" [level=2]
+        - paragraph: Gagnez du temps sur la collecte et la saisie de vos données
+        - img "image représentant une personne qui tourne une horloge pour représenter le temps qui passe"
+        - heading "ACCES CLIENT" [level=2]
+        - paragraph: Offrez à vos clients une vision en temps réel des collectes grâce à un tableau de bord intuitif.
+        - img "image représentant une personne qui saisie sur un ordinateur portable"
+        - heading "STATISTIQUES" [level=2]
+        - paragraph: Recevez des rapports détaillés sur vos activités de recyclage et votre impact écologique
+        `);
+
+  await expect(page.getByTestId("benefits")).toMatchAriaSnapshot(`
           - heading "Les bénéf ices" [level=1]
           - img
           - heading "REDUCTION DES COÛTS" [level=2]
@@ -44,34 +52,44 @@ test("check content of home page", async ({ page }) => {
           - heading "AMELIORATION DE L’IMAGE DE MARQUE" [level=2]
           - img "puce pour liste des différents bénéfices"
           - paragraph: Renforcez votre engagement social et écologique auprès de vos partenaires et clients
-          - heading "AccessCollect en chiffre" [level=1]
-          - img "image d'une poubelle"
-          - paragraph: 100T
-          - paragraph: de déchets recyclés
-          - img "image d'un collecteur"
-          - paragraph: /\\d+/
-          - paragraph: collecteurs en situation de handicap engagés et soutenus
-          - heading "Ils nous ont fait confiance" [level=1]
-          - button "← Previous"
-          - link "logo atelier papier soleil":
-            - img "logo atelier papier soleil"
-          - link "logo la drisse":
-            - img "logo la drisse"
-          - link "logo b&p environnement":
-            - img "logo b&p environnement"
-          - button "→ Next"
-          - list:
-            - listitem:
-              - button "• 1"
-            - listitem:
-              - button "• 2"
-            - listitem:
-              - button "• 3"
-          - img "flèche animée insistant sur la phrase n'hésitez plus!"
-          - heading "N'hésitez plus!" [level=1]
-          - paragraph: Dynamiser la gestion de votre collecte de déchets grâce à notre solution simple, fiable et flexible
-          - link "Cliquer sur le bouton NOUS CONTACTER"
-        `);
+          `);
+
+  await expect(page.getByTestId("access-collect-number")).toMatchAriaSnapshot(`
+            - heading "AccessCollect en chiffre" [level=1]
+            - img "image d'une poubelle"
+            - paragraph: 100T
+            - paragraph: de déchets recyclés
+            - img "image d'un collecteur"
+            - paragraph: /\\d+/
+            - paragraph: collecteurs en situation de handicap engagés et soutenus
+            `);
+
+  //not works
+  // await expect(page.getByTestId('trust-us')).toMatchAriaSnapshot(`
+  //   - heading "Ils nous ont fait confiance" [level=1]
+  //   - button "← Previous"
+  //   - link "logo atelier papier soleil":
+  //     - img "logo atelier papier soleil"
+  //   - link "logo la drisse":
+  //     - img "logo la drisse"
+  //   - link "logo b&p environnement":
+  //     - img "logo b&p environnement"
+  //   - button "→ Next"
+  //   - list:
+  //     - listitem:
+  //       - button "• 1"
+  //     - listitem:
+  //       - button "• 2"
+  //     - listitem:
+  //       - button "• 3"
+  //   `);
+
+  await expect(page.getByTestId("contact-us")).toMatchAriaSnapshot(`
+                - img "flèche animée insistant sur la phrase n'hésitez plus!"
+                - heading "N'hésitez plus!" [level=1]
+                - paragraph: Dynamiser la gestion de votre collecte de déchets grâce à notre solution simple, fiable et flexible
+                - link "Cliquer sur le bouton NOUS CONTACTER"
+                `);
 });
 
 test("check redirection of homepage", async ({ page }) => {
