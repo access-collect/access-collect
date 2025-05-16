@@ -1,6 +1,5 @@
-import OliveGreenButton from "@/app/components/button/OliveGreenButton";
+import CreateButton from "@/app/components/button/CreateButton";
 import { getUsersWithOrganisationName } from "@/lib/userQuery";
-import Link from "next/link";
 
 export default async function UsersPage() {
   const dataUsers = await getUsersWithOrganisationName();
@@ -10,15 +9,7 @@ export default async function UsersPage() {
       <div className="text-midnightBlue font-title font-bold  text-2xl text-center mt-6">
         {"UTILISATEURS"}
       </div>
-      <Link href="/dashboard/add-user">
-        <OliveGreenButton
-          name={"Créer un utilisateur"}
-          title={"Créer"}
-          svg={"/create.svg"}
-          alt={"pictogramme ajouter"}
-        />
-      </Link>
-
+      <CreateButton path={"/dashboard/add-user"} />
       <div className="mx-4 flex justify-center flex-col">
         <h1 className="text-2xl font-title text-oliveGreen text-center">
           {"Liste des utilisateurs :"}

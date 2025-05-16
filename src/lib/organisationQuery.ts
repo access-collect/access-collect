@@ -16,8 +16,8 @@ export const getOrganisation = async (id: string) => {
   const result = await db.query.organisation.findFirst({
     where: eq(organisation.id, id),
   });
-  if(!result){
-    console.error("Error: Organisation not found")
+  if (!result) {
+    console.error("Error: Organisation not found");
     return;
   }
   return result as Organisation;

@@ -2,7 +2,7 @@ import { getOrganisations } from "@/lib/organisationQuery";
 import { Organisation } from "@/lib/schema/organisation";
 import Link from "next/link";
 import Image from "next/image";
-import OliveGreenButton from "@/app/components/button/OliveGreenButton";
+import CreateButton from "@/app/components/button/CreateButton";
 
 export default async function OrganisationsPage() {
   const dataOrganisations = await getOrganisations();
@@ -12,14 +12,8 @@ export default async function OrganisationsPage() {
       <div className="text-midnightBlue font-title font-bold  text-2xl text-center mt-4">
         {"ORGANISATIONS"}
       </div>
-      <Link href="/dashboard/add-organisation">
-        <OliveGreenButton
-          name={"Créer une organisation"}
-          title={"Créer"}
-          svg={"/create.svg"}
-          alt={"pictogramme ajouter"}
-        />
-      </Link>
+
+      <CreateButton path={"/dashboard/add-organisation"} />
 
       <div className="mx-4 flex justify-center flex-col">
         <h1 className="text-2xl font-title text-oliveGreen text-center">
