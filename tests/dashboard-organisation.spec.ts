@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { removeOrganisation } from "./functions";
 
 test.beforeEach(async ({ page }) => {
-  await removeOrganisation("Organisation-Test")
+  await removeOrganisation("Organisation-Test");
   //To do with session = inject user with role admin or super admin ? and need connect the user and navigate to dashboard/organisation
   await page.goto("/dashboard/organisation");
 });
@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 //later we need to improve this test => User-Admin or SuperAdmin experience on dashboard/organisation
 test("User experience on dashboard/organisation", async ({ page }) => {
   //check content
-  await expect(page.locator('body')).toMatchAriaSnapshot(`
+  await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: ORGANISATIONS
     - img "Pictogramme rond avec +"
     - link "Créer":
@@ -27,26 +27,36 @@ test("User experience on dashboard/organisation", async ({ page }) => {
     `);
   //create organisation
 
-  await page.getByRole('button', { name: 'Créer' }).click();
-  await page.getByPlaceholder('Nom').click();
-  await page.getByPlaceholder('Nom').fill('Organisation-Test');
-  await page.getByPlaceholder('Adresse').click();
-  await page.getByPlaceholder('Adresse').fill('12 rue des tests');
-  await page.getByPlaceholder('Téléphone').click();
-  await page.getByPlaceholder('Téléphone').fill('0123456789');
-  await page.getByPlaceholder('Contact').click();
-  await page.getByPlaceholder('Contact').fill('Contact Test');
-  await page.getByPlaceholder('N° d\'agrément').click();
-  await page.getByPlaceholder('N° d\'agrément').fill('AA-12345-CD-3');
-  await page.getByRole('button', { name: 'Confirmer' }).click();
+  await page.getByRole("button", { name: "Créer" }).click();
+  await page.getByPlaceholder("Nom").click();
+  await page.getByPlaceholder("Nom").fill("Organisation-Test");
+  await page.getByPlaceholder("Adresse").click();
+  await page.getByPlaceholder("Adresse").fill("12 rue des tests");
+  await page.getByPlaceholder("Téléphone").click();
+  await page.getByPlaceholder("Téléphone").fill("0123456789");
+  await page.getByPlaceholder("Contact").click();
+  await page.getByPlaceholder("Contact").fill("Contact Test");
+  await page.getByPlaceholder("N° d'agrément").click();
+  await page.getByPlaceholder("N° d'agrément").fill("AA-12345-CD-3");
+  await page.getByRole("button", { name: "Confirmer" }).click();
   //to be removed when redirection to /dashboard/organisation is done
-  await page.getByRole('link', { name: 'Accéder à la page dashboard/organisation Organisations' }).click();
-  await expect(page.getByRole('cell', { name: 'Organisation-Test' })).toContainText("Organisation-Test");
-  await expect(page.getByRole('cell', { name: 'Contact Test' })).toContainText("Contact Test");
-  await expect(page.getByRole('cell', { name: '0123456789' })).toContainText('0123456789');
+  await page
+    .getByRole("link", {
+      name: "Accéder à la page dashboard/organisation Organisations",
+    })
+    .click();
+  await expect(
+    page.getByRole("cell", { name: "Organisation-Test" }),
+  ).toContainText("Organisation-Test");
+  await expect(page.getByRole("cell", { name: "Contact Test" })).toContainText(
+    "Contact Test",
+  );
+  await expect(page.getByRole("cell", { name: "0123456789" })).toContainText(
+    "0123456789",
+  );
   //go to organisation/[id] page and check content
-  await page.getByTestId('link-to-organisation/id0').click();
-  await expect(page.locator('body')).toMatchAriaSnapshot(`
+  await page.getByTestId("link-to-organisation/id0").click();
+  await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: ORGANISATION
     - img "Pictogramme avec crayon"
     - button "Modifier"
@@ -60,22 +70,23 @@ test("User experience on dashboard/organisation", async ({ page }) => {
     - paragraph: "/N° D'AGREMENT : AA-\\\\d+-CD-3/"
     `);
   //delete organisation
-  await page.getByRole('button', { name: 'Supprimer' }).click();
-  await expect(page.getByLabel('Suppression de l\'organisation')).toMatchAriaSnapshot(`
+  await page.getByRole("button", { name: "Supprimer" }).click();
+  await expect(page.getByLabel("Suppression de l'organisation"))
+    .toMatchAriaSnapshot(`
     - dialog "Suppression de l'organisation":
       - heading "Suppression de l'organisation" [level=2]
       - text: Veuillez confirmer la suppression de l'organisation svp ?
       - button "Confirmer": CONFIRMER
       - button "Annuler": ANNULER
     `);
-  await page.getByLabel('Confirmer').click();
-  await expect(page.getByRole('dialog')).toMatchAriaSnapshot(`
+  await page.getByLabel("Confirmer").click();
+  await expect(page.getByRole("dialog")).toMatchAriaSnapshot(`
     - dialog:
       - button "Fermer la pop up"
       - text: L'organisation a bien été supprimée
     `);
-  await page.getByLabel('Fermer la pop up').click();
-  await expect(page.locator('body')).toMatchAriaSnapshot(`
+  await page.getByLabel("Fermer la pop up").click();
+  await expect(page.locator("body")).toMatchAriaSnapshot(`
     - heading "Liste des organisations :" [level=1]
     - table:
       - rowgroup:
@@ -86,4 +97,4 @@ test("User experience on dashboard/organisation", async ({ page }) => {
           - cell "Consulter"
       - rowgroup
     `);
-})
+});

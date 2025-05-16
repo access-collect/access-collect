@@ -41,7 +41,10 @@ export default async function OrganisationsPage() {
                   <td className="px-8">{organisation.contact}</td>
                   <td className="px-8">{organisation.phoneNumber}</td>
                   <td className=" flex justify-center">
-                    <Link href={`/dashboard/organisation/${organisation.id}`} data-testid={`link-to-organisation/id${index}`}>
+                    <Link
+                      href={`/dashboard/organisation/${organisation.id}`}
+                      data-testid={`link-to-organisation/id${index}`}
+                    >
                       <Image
                         src="/consulter.svg"
                         alt="voir l'organisation en détail"
