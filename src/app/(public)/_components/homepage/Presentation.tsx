@@ -9,7 +9,10 @@ const Presentation = () => {
       {/* connection section for the collector in mobile version only */}
       <LoginCollectButton />
 
-      <section className="text-midnightBlue lg:bg-[url('/backgroundHomepage.svg')] lg:bg-cover lg:bg-center lg:bg-no-repeat">
+      <section
+        className="text-midnightBlue lg:bg-[url('/backgroundHomepage.svg')] lg:bg-cover lg:bg-center lg:bg-no-repeat"
+        data-testid={"presentation"}
+      >
         <div className="lg:mx-10 lg:flex lg:items-center xl:mx-24">
           {/* left part */}
           <div className="w-full lg:flex lg:flex-col lg:justify-around ">

@@ -3,7 +3,10 @@ import Image from "next/image";
 const AccessCollectNumber = () => {
   return (
     <>
-      <section className="text-midnightBlue pb-20 max-w-[1200px] md:mx-auto lg:mt-10">
+      <section
+        className="text-midnightBlue pb-20 max-w-[1200px] md:mx-auto lg:mt-10"
+        data-testid={"access-collect-number"}
+      >
         <div className="flex justify-center">
           <h1 className="relative text-center text-2xl text-brightOrange font-section pt-8 md:pt-0 md:text-4xl">
             {"AccessCollect en chiffre"}
