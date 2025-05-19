@@ -37,9 +37,9 @@ export default async function OrganisationsPage() {
                   }`}
                   key={organisation.id}
                 >
-                  <td className="px-8">{organisation.name}</td>
-                  <td className="px-8">{organisation.contact}</td>
-                  <td className="px-8">{organisation.phoneNumber}</td>
+                  <td className="px-8" data-testid={`name-${index}`}>{organisation.name}</td>
+                  <td className="px-8" data-testid={`contact-${index}`}>{organisation.contact}</td>
+                  <td className="px-8" data-testid={`phone-${index}`}>{organisation.phoneNumber}</td>
                   <td className=" flex justify-center">
                     <Link
                       href={`/dashboard/organisation/${organisation.id}`}

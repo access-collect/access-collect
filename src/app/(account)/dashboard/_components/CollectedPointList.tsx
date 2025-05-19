@@ -35,9 +35,9 @@ export default async function CollectedPointList() {
                 }`}
                 key={index}
               >
-                <td className="pl-4">{collectedPoint.name}</td>
-                <td className="pl-8">{collectedPoint.address}</td>
-                <td className="pl-8">
+                <td className="pl-4" data-testid={`name-${index}`}>{collectedPoint.name}</td>
+                <td className="pl-8" data-testid={`address-${index}`}>{collectedPoint.address}</td>
+                <td className="pl-8" data-testid={`days-${index}`}>
                   {collectedPoint.daysOfCollect.map(
                     (day) => dictionnaryDays[day] + " ",
                   )}
