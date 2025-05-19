@@ -71,7 +71,7 @@ test("User experience on dashboard/user", async ({ page }) => {
   await expect(
     page.getByRole("cell", { name: "test@access-collect.fr" }),
   ).toContainText("test@access-collect.fr");
-  await expect(page.getByRole("cell", { name: "admin" })).toContainText(
+  await expect(page.getByRole("cell", { name: "admin", exact: true })).toContainText(
     "admin",
   );
   await expect(

@@ -46,7 +46,7 @@ test("User experience on dashboard/organisation", async ({ page }) => {
     })
     .click();
   await expect(
-    page.getByRole("cell", { name: "Organisation-Test" }),
+    page.getByRole("cell", { name: 'Organisation-Test', exact: true }),
   ).toContainText("Organisation-Test");
   await expect(page.getByRole("cell", { name: "Contact Test" })).toContainText(
     "Contact Test",
@@ -97,4 +97,6 @@ test("User experience on dashboard/organisation", async ({ page }) => {
           - cell "Consulter"
       - rowgroup
     `);
+
+  await removeOrganisation("Organisation-Test");
 });
