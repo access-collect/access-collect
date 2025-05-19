@@ -32,11 +32,19 @@ export default async function UsersPage() {
                   }`}
                   key={data.user.id}
                 >
-                  <td className="px-8" data-testid={`name-${index}`}>{data.user.name}</td>
+                  <td className="px-8" data-testid={`name-${index}`}>
+                    {data.user.name}
+                  </td>
 
-                  <td className="px-8" data-testid={`email-${index}`}>{data.user.email}</td>
-                  <td className="px-8" data-testid={`role-${index}`}>{data.user.role}</td>
-                  <td className="px-8" data-testid={`orga-name-${index}`}>{data.organisation?.name}</td>
+                  <td className="px-8" data-testid={`email-${index}`}>
+                    {data.user.email}
+                  </td>
+                  <td className="px-8" data-testid={`role-${index}`}>
+                    {data.user.role}
+                  </td>
+                  <td className="px-8" data-testid={`orga-name-${index}`}>
+                    {data.organisation?.name}
+                  </td>
                 </tr>
               ))}
             </tbody>

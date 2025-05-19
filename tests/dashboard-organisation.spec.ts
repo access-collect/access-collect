@@ -23,7 +23,14 @@ test("User experience on dashboard/organisation", async ({ page }) => {
           - cell "Contact"
           - cell "Numéro de téléphone"
           - cell "Consulter"
-      - rowgroup
+      - rowgroup:
+        - row /Organisation-test-global Test Contact \\d+ voir l'organisation en détail/:
+          - cell "Organisation-test-global"
+          - cell "Test Contact"
+          - cell /\\d+/
+          - cell "voir l'organisation en détail":
+            - link "voir l'organisation en détail":
+              - img "voir l'organisation en détail"
     `);
   //create organisation
 
@@ -45,17 +52,12 @@ test("User experience on dashboard/organisation", async ({ page }) => {
       name: "Accéder à la page dashboard/organisation Organisations",
     })
     .click();
-  await expect(
-    page.getByRole("cell", { name: 'Organisation-Test', exact: true }),
-  ).toContainText("Organisation-Test");
-  await expect(page.getByRole("cell", { name: "Contact Test" })).toContainText(
-    "Contact Test",
-  );
-  await expect(page.getByRole("cell", { name: "0123456789" })).toContainText(
-    "0123456789",
-  );
+  //check if new organisation is on the list
+  await expect(page.getByTestId("name-1")).toContainText("Organisation-Test");
+  await expect(page.getByTestId("contact-1")).toContainText("Contact Test");
+  await expect(page.getByTestId("phone-1")).toContainText("0123456789");
   //go to organisation/[id] page and check content
-  await page.getByTestId("link-to-organisation/id0").click();
+  await page.getByTestId("link-to-organisation/id1").click();
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: ORGANISATION
     - img "Pictogramme avec crayon"
@@ -69,7 +71,7 @@ test("User experience on dashboard/organisation", async ({ page }) => {
     - paragraph: "/TELEPHONE : \\\\d+/"
     - paragraph: "/N° D'AGREMENT : AA-\\\\d+-CD-3/"
     `);
-  //delete organisation
+  // //delete organisation
   await page.getByRole("button", { name: "Supprimer" }).click();
   await expect(page.getByLabel("Suppression de l'organisation"))
     .toMatchAriaSnapshot(`
@@ -86,6 +88,7 @@ test("User experience on dashboard/organisation", async ({ page }) => {
       - text: L'organisation a bien été supprimée
     `);
   await page.getByLabel("Fermer la pop up").click();
+  //check the organization is no longer in the list
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - heading "Liste des organisations :" [level=1]
     - table:
@@ -95,7 +98,14 @@ test("User experience on dashboard/organisation", async ({ page }) => {
           - cell "Contact"
           - cell "Numéro de téléphone"
           - cell "Consulter"
-      - rowgroup
+      - rowgroup:
+        - row /Organisation-test-global Test Contact \\d+ voir l'organisation en détail/:
+          - cell "Organisation-test-global"
+          - cell "Test Contact"
+          - cell /\\d+/
+          - cell "voir l'organisation en détail":
+            - link "voir l'organisation en détail":
+              - img "voir l'organisation en détail"
     `);
 
   await removeOrganisation("Organisation-Test");
