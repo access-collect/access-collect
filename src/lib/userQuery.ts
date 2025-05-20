@@ -115,6 +115,6 @@ export const updatePassword = async (
   if (!update) {
     return { error: "password not updated" };
   }
-  deleteKey(userKey);
+  await deleteKey(userKey);
   return { result: update };
 };
