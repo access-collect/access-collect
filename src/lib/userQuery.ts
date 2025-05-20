@@ -69,33 +69,34 @@ export const addUser = async (formData: any) => {
 
 export const getUserDataWithEmail = async (email: string) => {
   const user = await db.query.user.findFirst({
-    where: (user, {eq}) => eq(user.email, email),
+    where: (user, { eq }) => eq(user.email, email),
   });
+
   if (!user) {
-    return {error: "user not found"};
+    console.error("Error: user not found");
   }
 
-  return {result : user as User};
-
+  return user as User;
 };
+
 
 export const sendResetPasswordEmailIfUserExists = async (email: string) => {
   const user = await getUserDataWithEmail(email);
-  if (user.error || !user.result) {
+  if (!user) {
     return { error: "email doesn't exists on database" };
   }
 
-  if(user.result) {
-    await addKey(user.result.id);
-    const userKey = await getKeyByUserId(user.result.id);
+  if(user) {
+    await addKey(user.id);
+    const userKey = await getKeyByUserId(user.id);
     const info: any = await creationOfTransporter();
     const url: string =
         process.env.NEXTAUTH_URL +
         "/reset-password/" +
-        user.result.id +
+        user.id +
         "/" +
         userKey.id;
-    await sendMailToUser(url, info, user.result.email);
+    await sendMailToUser(url, info, user.email);
   }
 };
 
