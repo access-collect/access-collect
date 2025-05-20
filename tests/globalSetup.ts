@@ -23,24 +23,24 @@ export default async function globalSetup(config: FullConfig) {
     organisation,
     "super-admin-test@access-collect.fr",
     "superAdmin",
-    "SA Test",
+    "Super-admin Name",
   );
   await injectUserWithOrganisationAlreadyExisting(
     "admin-test@access-collect.fr",
     "admin",
     "Organisation-test-global",
-    "A Test",
+    "Admin Name",
   );
   await injectUserWithOrganisationAlreadyExisting(
     "collector-test@access-collect.fr",
     "collector",
     "Organisation-test-global",
-    "Col Test",
+    "Collecteur Name",
   );
   await injectUserWithOrganisationAlreadyExisting(
     "client-test@access-collect.fr",
     "client",
     "Organisation-test-global",
-    "C Test",
+    "Client Name",
   );
 }

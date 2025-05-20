@@ -37,19 +37,28 @@ export default async function OrganisationsPage() {
                   }`}
                   key={organisation.id}
                 >
-                  <td className="px-8" data-testid={`name-${index}`}>
+                  <td
+                    className="px-8"
+                    data-testid={`name-${organisation.name}`}
+                  >
                     {organisation.name}
                   </td>
-                  <td className="px-8" data-testid={`contact-${index}`}>
+                  <td
+                    className="px-8"
+                    data-testid={`contact-${organisation.name}`}
+                  >
                     {organisation.contact}
                   </td>
-                  <td className="px-8" data-testid={`phone-${index}`}>
+                  <td
+                    className="px-8"
+                    data-testid={`phone-${organisation.name}`}
+                  >
                     {organisation.phoneNumber}
                   </td>
                   <td className=" flex justify-center">
                     <Link
                       href={`/dashboard/organisation/${organisation.id}`}
-                      data-testid={`link-to-organisation/id${index}`}
+                      data-testid={`link-to-organisation/id-${organisation.name}`}
                     >
                       <Image
                         src="/consulter.svg"

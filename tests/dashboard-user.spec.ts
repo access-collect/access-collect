@@ -38,23 +38,23 @@ test("User experience on dashboard/user", async ({ page }) => {
           - cell "Rôle"
           - cell "Entreprise"
       - rowgroup:
-        - row "SA Test super-admin-test@access-collect.fr superAdmin Organisation-test-global":
-          - cell "SA Test"
+        - row "Super-admin Name super-admin-test@access-collect.fr superAdmin Organisation-test-global":
+          - cell "Super-admin Name"
           - cell "super-admin-test@access-collect.fr"
           - cell "superAdmin"
           - cell "Organisation-test-global"
-        - row "A Test admin-test@access-collect.fr admin Organisation-test-global":
-          - cell "A Test"
+        - row "Admin Name admin-test@access-collect.fr admin Organisation-test-global":
+          - cell "Admin Name"
           - cell "admin-test@access-collect.fr"
           - cell "admin"
           - cell "Organisation-test-global"
-        - row "Col Test collector-test@access-collect.fr collector Organisation-test-global":
-          - cell "Col Test"
+        - row "Collecteur Name collector-test@access-collect.fr collector Organisation-test-global":
+          - cell "Collecteur Name"
           - cell "collector-test@access-collect.fr"
           - cell "collector"
           - cell "Organisation-test-global"
-        - row "C Test client-test@access-collect.fr client Organisation-test-global":
-          - cell "C Test"
+        - row "Client Name client-test@access-collect.fr client Organisation-test-global":
+          - cell "Client Name"
           - cell "client-test@access-collect.fr"
           - cell "client"
           - cell "Organisation-test-global"
@@ -86,12 +86,12 @@ test("User experience on dashboard/user", async ({ page }) => {
     })
     .click();
   //check if new user is on the list
-  await expect(page.getByTestId("name-4")).toContainText("Test");
-  await expect(page.getByTestId("email-4")).toContainText(
+  await expect(page.getByTestId("name-Test")).toContainText("Test");
+  await expect(page.getByTestId("email-Test")).toContainText(
     "test@access-collect.fr",
   );
-  await expect(page.getByTestId("role-4")).toContainText("admin");
-  await expect(page.getByTestId("orga-name-4")).toContainText(
+  await expect(page.getByTestId("role-Test")).toContainText("admin");
+  await expect(page.getByTestId("orga-name-Test")).toContainText(
     "Organisation-test-add-user",
   );
   await removeUser("test@access-collect.fr");

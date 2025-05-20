@@ -10,6 +10,7 @@ test.beforeEach(async ({ page }) => {
 //later we need to improve this test => User-Admin or SuperAdmin experience on dashboard/organisation
 test("User experience on dashboard/organisation", async ({ page }) => {
   //check content
+
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: ORGANISATIONS
     - img "Pictogramme rond avec +"
@@ -32,7 +33,8 @@ test("User experience on dashboard/organisation", async ({ page }) => {
             - link "voir l'organisation en détail":
               - img "voir l'organisation en détail"
     `);
-  //create organisation
+
+  // //create organisation
 
   await page.getByRole("button", { name: "Créer" }).click();
   await page.getByPlaceholder("Nom").click();
@@ -53,11 +55,17 @@ test("User experience on dashboard/organisation", async ({ page }) => {
     })
     .click();
   //check if new organisation is on the list
-  await expect(page.getByTestId("name-1")).toContainText("Organisation-Test");
-  await expect(page.getByTestId("contact-1")).toContainText("Contact Test");
-  await expect(page.getByTestId("phone-1")).toContainText("0123456789");
+  await expect(page.getByTestId("name-Organisation-Test")).toContainText(
+    "Organisation-Test",
+  );
+  await expect(page.getByTestId("contact-Organisation-Test")).toContainText(
+    "Contact Test",
+  );
+  await expect(page.getByTestId("phone-Organisation-Test")).toContainText(
+    "0123456789",
+  );
   //go to organisation/[id] page and check content
-  await page.getByTestId("link-to-organisation/id1").click();
+  await page.getByTestId("link-to-organisation/id-Organisation-Test").click();
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: ORGANISATION
     - img "Pictogramme avec crayon"
