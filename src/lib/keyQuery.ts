@@ -3,7 +3,7 @@ import { db } from "./drizzle";
 import { Key, key } from "./schema/key";
 import { eq } from "drizzle-orm";
 
-export const addKey = async (userId: any) => {
+export const addKey = async (userId: string) => {
   const date = new Date();
   const expirationDate = new Date(date.setHours(date.getHours() + 2));
 
