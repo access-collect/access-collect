@@ -7,20 +7,15 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     name: Setup Branch
-    outputs:
-      branch: ${{ steps.branch_name.outputs.current_branch }}
     steps:
-      - name: Get branch name
-        id: branch_name
-        uses: tj-actions/branch-names@v8
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+           node-version: lts/*
 
       - name: Install dependencies for tests
         run: npm install
 
       - name: Test Jest
         run: npm run jest
+
