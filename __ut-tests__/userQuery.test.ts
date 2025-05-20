@@ -23,14 +23,16 @@ describe("getUserDataWithEmail", () => {
             where: expect.any(Function),
         });
 
-        expect(response).toEqual({ result: fakeUser });
+        expect(response).toEqual(fakeUser);
     });
 
     it("return an error if not user", async () => {
+        const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
         (db.query.user.findFirst as jest.Mock).mockResolvedValue(null);
 
-        const response = await getUserDataWithEmail("unknown@example.com");
+        await getUserDataWithEmail("unknown@example.com");
 
-        expect(response).toEqual({ error: "user not found" });
+        expect(consoleSpy).toHaveBeenCalledWith("Error: user not found");
+        consoleSpy.mockRestore();
     });
 });
