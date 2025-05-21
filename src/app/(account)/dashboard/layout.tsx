@@ -19,7 +19,7 @@ export default async function DashboardLayout({
   return (
     <ClientLayout session={session}>
       <div className="flex">
-        <DashboardLinks session={session} />
+        <DashboardLinks  />
         {children}
       </div>
     </ClientLayout>
