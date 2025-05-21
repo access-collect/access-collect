@@ -7,6 +7,7 @@ import { InputFormRequired } from "@/app/components/inputs/InputFormRequired";
 import { InputPassword } from "@/app/components/inputs/InputPassword";
 import { Organisation } from "@/lib/schema/organisation";
 import { addUser } from "@/lib/userQuery";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -15,6 +16,7 @@ const UserForm = ({
 }: {
   organisationInfos: Organisation[];
 }) => {
+  const router = useRouter();
   const [selectedUser, setSelectedUser] = useState("");
   const [selectedOrga, setSelectedOrga] = useState("");
   const router = useRouter();
@@ -31,6 +33,8 @@ const UserForm = ({
       return;
     }
     successAlert("L'utilisateur a bien été ajouté !");
+    router.push('/dashboard/user');
+
   };
 
   return (
