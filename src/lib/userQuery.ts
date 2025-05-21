@@ -63,7 +63,7 @@ export const addUser = async (formData: any) => {
 
     revalidatePath("/dashboard/user");
   } catch (error) {
-    console.error(error);
+    return { error: "user not added" + error };
   }
 };
 

@@ -4,7 +4,10 @@ import { PiArrowBendDownRightBold } from "react-icons/pi";
 const Benefits = () => {
   return (
     <>
-      <section className="text-midnightBlue pt-5 pb-20 mt-24 bg-transparentImperialYellow">
+      <section
+        className="text-midnightBlue pt-5 pb-20 mt-24 bg-transparentImperialYellow"
+        data-testid={"benefits"}
+      >
         <div className="flex flex-col items-center">
           <div className="mx-6 mt-2 max-w-screen-xl md:flex md:flex-col md:items-start md:mt-10 ">
             <div className="flex">

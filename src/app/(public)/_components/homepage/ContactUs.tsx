@@ -4,7 +4,10 @@ import Image from "next/image";
 const ContactUs = () => {
   return (
     <>
-      <section className="text-midnightBlue pb-20 flex flex-col items-center justify-center">
+      <section
+        className="text-midnightBlue pb-20 flex flex-col items-center justify-center"
+        data-testid={"contact-us"}
+      >
         <Image
           src="/arrowAnimate.gif"
           alt={"flèche animée insistant sur la phrase n'hésitez plus!"}

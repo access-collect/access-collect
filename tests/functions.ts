@@ -1,36 +1,98 @@
+import "@/lib/config";
 import { db } from "@/lib/drizzle";
+import { collectPoint } from "@/lib/schema/collectPoint";
 import { NewOrganisation, organisation } from "@/lib/schema/organisation";
+import { NewUser, user } from "@/lib/schema/user";
+import { hashPassword } from "@/lib/userQuery";
 import { eq } from "drizzle-orm";
 
-export const insertOrganisation = async () => {
-  const newOrganisation: NewOrganisation = {
-    name: "Temporary Organisation",
-    address: "1 rue test 01234 TEST",
-    phoneNumber: "0987654321",
-    contact: "Contact TEST",
-    agrementNumber: "XX-1234-XX",
-  };
+//////////////////////////USERS//////////////////////////////
+
+export const injectUser = async (
+  organisation: NewOrganisation,
+  email: string,
+  role: "superAdmin" | "admin" | "client" | "collector",
+  name: string,
+) => {
+  const insertOrganisation = await injectOrganisation(organisation);
+  const password = await hashPassword("Test1234!");
+  if (insertOrganisation && password) {
+    const newUser: NewUser = {
+      name: name,
+      email: email,
+      password: password,
+      role: role,
+      organisationId: insertOrganisation[0].insertedId,
+    };
+    const result = await db.insert(user).values(newUser).returning();
+
+    if (result[0].id) {
+      return result;
+    }
+
+    console.log("User not injected");
+  }
+};
+
+export const injectUserWithOrganisationAlreadyExisting = async (
+  email: string,
+  role: "superAdmin" | "admin" | "client" | "collector",
+  organisationName: string,
+  name: string,
+) => {
+  const findOrganisation = await db.query.organisation.findFirst({
+    where: eq(organisation.name, organisationName),
+  });
+  const password = await hashPassword("Test1234!");
+  if (findOrganisation && password) {
+    const newUser: NewUser = {
+      name: name,
+      email: email,
+      password: password,
+      role: role,
+      organisationId: findOrganisation.id,
+    };
+    const result = await db.insert(user).values(newUser).returning();
+
+    if (result[0].id) {
+      return result;
+    }
+
+    console.log("User not injected");
+  }
+};
+
+export const removeUser = async (email: string) => {
+  await db.delete(user).where(eq(user.email, email));
+};
+
+////////////////////ORGANISATIONS/////////////////////////////
+export const injectOrganisation = async (newOrganisation: NewOrganisation) => {
   const result = await db
     .insert(organisation)
     .values(newOrganisation)
-    .returning();
-  if (result[0].id) {
-    console.log("Temporary Organisation inserted");
-    return;
+    .returning({ insertedId: organisation.id });
+  if (result[0].insertedId) {
+    return result;
+  } else {
+    console.log("error: organisation not inserted");
   }
-  console.log("Error in insertOrganisation function");
 };
 
 export const removeOrganisation = async (name: string) => {
-  const deleted = await db
-    .delete(organisation)
-    .where(eq(organisation.name, name))
-    .returning({ deleted: organisation.id });
+  await db.delete(organisation).where(eq(organisation.name, name));
+};
 
-  if (deleted[0].deleted) {
-    console.log("Organisation with id : " + deleted + " has been deleted");
-    return;
-  }
+//////////////////////////COLLECT POINT//////////////////////////////
 
-  console.log("Error in removeOrganisation");
+export const removeCollectPoint = async (name: string) => {
+  await db.delete(collectPoint).where(eq(collectPoint.name, name));
+};
+
+export const cleanAllDatas = async () => {
+  await removeUser("super-admin-test@access-collect.fr");
+  await removeUser("admin-test@access-collect.fr");
+  await removeUser("collector-test@access-collect.fr");
+  await removeUser("client-test@access-collect.fr");
+  await removeOrganisation("Organisation-test-global");
 };

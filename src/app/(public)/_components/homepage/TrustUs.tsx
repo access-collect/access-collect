@@ -3,7 +3,10 @@ import SliderTrustHome from "../slider/sliderTrust/Slider";
 const TrustUs = () => {
   return (
     <>
-      <section className="text-midnightBlue pb-20 bg-transparentOliveGreen">
+      <section
+        className="text-midnightBlue pb-20 bg-transparentOliveGreen"
+        data-testid={"trust-us"}
+      >
         <div className="max-w-screen-xl mx-auto">
           <div className="flex">
             <h1 className="relative mx-4 text-2xl font-section mt-8 md:text-4xl">
