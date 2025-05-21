@@ -22,12 +22,12 @@ export const hashPassword = async (text: string) => {
     console.log(error.message);
   }
 };
-
+  
 export const checkPasswordValidity = async (
-  passeword: string,
+  password: string,
   hash: string,
 ) => {
-  const result = Bcrypt.compare(passeword, hash);
+  const result = Bcrypt.compare(password, hash);  
   return result;
 };
 

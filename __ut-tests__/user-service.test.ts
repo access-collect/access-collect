@@ -9,7 +9,7 @@ const mockedCheckPasswordValidity =
 
 describe("hashPassword", () => {
   it("Should return a hashed password", async () => {
-    mockedHashPassword.mockResolvedValue("motDePasseHashé");
+    mockedHashPassword.mockResolvedValue("hashedPassword");
     mockedCheckPasswordValidity.mockResolvedValue(true);
 
     const password = "monmotdepasse69";
