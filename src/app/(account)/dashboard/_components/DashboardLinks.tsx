@@ -37,48 +37,34 @@ const DashboardLinks = async ({ session }: { session: any }) => {
       className="w-full md:w-1/3 h-screen md:h-screen flex flex-wrap justify-center md:justify-start md:flex-col md:items-center 
       bg-transparentLightOrange"
     >
-       <div className="">
-      <h1 className="text-midnightBlue">{"Bonjour Super Admin,"}</h1>
-    </div>
-      <div className="flex flex-col justify-center">
-        {links.map((link) => (
-          <div key={link.title} className="w-full h-[60px]  shadow-md shadow-lightOliveGreen px-3 
-                    rounded-lg my-4  flex flex-row justify-start items-center
-                    md:w-[200px] md:h-[60px]  bg-white text-center text-midnightBlue text-xl font-subTitle 
-                    lg:w-[300px] lg:h-[71px] hover:bg-lightOrange">
-            <Image src={link.picto} alt={link.alt} width={60} height={50} />
-            {link.title}
-            {/* <div className="text-center text-midnightBlue text-xl font-subTitle">
-              {link.title}
-            </div> */}
-
-          </div>
-
-        ))}
-
-
-        {/* {links.map((link) => (
-        <Link key={link.title}>
+      <div className="">
+        <h1 className="text-midnightBlue">{"Bonjour Super Admin,"}</h1>
+      </div>
+      {links.map((link) => (
+        <Link href={link.path} key={link.title}>
           <div
-            className={`w-full h-[60px]  shadow-md shadow-lightOliveGreen
-                    rounded-lg my-6 md:my-4 flex flex-row md:justify-center md:items-center  items-center
-                    md:w-[200px] md:h-[60px]  bg-white
+            className={`w-[160px] h-[160px] mx-6 shadow-md shadow-lightOliveGreen 
+                    rounded-lg my-6 md:my-4 flex flex-col justify-center items-center 
+                    ${activePath && link.path.includes(activePath) ? "bg-lightOrange" : "bg-white"}
+                    md:w-[200px] md:h-[60px] 
                     lg:w-[300px] lg:h-[71px] md:flex-row md:hover:bg-lightOrange`}
           >
-            <Image src={link.picto} alt={link.alt} width={60} height={50} />
+            <Image src={link.picto} alt={link.alt} width={70} height={100} />
             <div className="text-center text-midnightBlue text-xl font-subTitle">
               {link.title}
-            </div> 
+            </div>
           </div>
         </Link>
-      ))} */}
 
-      </div>
+      ))}
       <div className="flex flex-col justify-center">
         <SignOutButton />
       </div>
     </div>
+
   );
 };
+
+
 
 export default DashboardLinks;

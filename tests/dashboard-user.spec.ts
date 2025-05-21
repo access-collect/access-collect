@@ -1,10 +1,12 @@
 import { test, expect } from "@playwright/test";
 import {
   injectOrganisation,
+  injectUser,
   removeOrganisation,
   removeUser,
 } from "./functions";
 import { NewOrganisation } from "@/lib/schema/organisation";
+
 
 const organisation: NewOrganisation = {
   name: "Organisation-test-add-user",
@@ -14,16 +16,29 @@ const organisation: NewOrganisation = {
   agrementNumber: "ABC-123456-DE",
 };
 
+
 test.beforeEach(async ({ page }) => {
   //To do with session = inject user with role admin and need connect the user and navigate to dashboard/user
   await removeUser("test-add-user@access-collect.fr");
   await removeOrganisation("Organisation-test-add-user");
   await injectOrganisation(organisation);
-  await page.goto("/dashboard/user");
+  await page.goto("/login");
+
 });
 //later we need to improve this test => User-Admin experience on dashboard/user
 test("User experience on dashboard/user", async ({ page }) => {
+
+  await page.getByPlaceholder('Email').click();
+  await page.getByPlaceholder('Email').fill('super-admin-test@access-collect.fr');
+  await page.locator('input[name="password"]').click();
+  await page.locator('input[name="password"]').fill('Test1234!');
+  await page.getByRole('button', { name: 'CONNEXION' }).click();
+
+
   //check content of page
+
+
+  await page.getByText('Utilisateurs').click();
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: UTILISATEURS
     - img "Pictogramme rond avec +"
