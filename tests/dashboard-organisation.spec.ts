@@ -3,14 +3,20 @@ import { removeOrganisation } from "./functions";
 
 test.beforeEach(async ({ page }) => {
   await removeOrganisation("Organisation-Test");
-  //To do with session = inject user with role admin or super admin ? and need connect the user and navigate to dashboard/organisation
-  await page.goto("/dashboard/organisation");
+  await page.goto("/");
+  //connection with super-admin and access to dashboard/organisation
+  await page.getByRole('link', { name: 'Cliquer sur le bouton SE' }).click();
+  await page.getByPlaceholder('Email').click();
+  await page.getByPlaceholder('Email').fill('super-admin-test@access-collect.fr');
+  await page.locator('input[name="password"]').click();
+  await page.locator('input[name="password"]').fill('Test1234!');
+  await page.getByRole('button', { name: 'CONNEXION' }).click();
+  await page.getByRole('link', { name: 'Accéder à la page dashboard/organisation Organisations' }).click();
 });
 
 //later we need to improve this test => User-Admin or SuperAdmin experience on dashboard/organisation
 test("User experience on dashboard/organisation", async ({ page }) => {
   //check content
-
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: ORGANISATIONS
     - img "Pictogramme rond avec +"
