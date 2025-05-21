@@ -30,18 +30,17 @@ export default async function CollectedPointList() {
           <tbody>
             {data.map((collectedPoint, index) => (
               <tr
-                className={`border border-oliveGreen ${
-                  index % 2 === 0 ? "bg-transparentOliveGreen" : "bg-white"
-                }`}
+                className={`border border-oliveGreen ${index % 2 === 0 ? "bg-transparentOliveGreen" : "bg-white"
+                  }`}
                 key={index}
               >
-                <td className="pl-4" data-testid={`name-${index}`}>
+                <td className="pl-4" data-testid={`name-${collectedPoint.name}`}>
                   {collectedPoint.name}
                 </td>
-                <td className="pl-8" data-testid={`address-${index}`}>
+                <td className="pl-8" data-testid={`address-${collectedPoint.name}`}>
                   {collectedPoint.address}
                 </td>
-                <td className="pl-8" data-testid={`days-${index}`}>
+                <td className="pl-8" data-testid={`days-${collectedPoint.name}`}>
                   {collectedPoint.daysOfCollect.map(
                     (day) => dictionnaryDays[day] + " ",
                   )}
