@@ -12,6 +12,7 @@ export const InputPasswordHome = ({
           {label}
         </label>
         <input
+          data-testid="input-password-home"
           className="p-2 bg-transparentLightOrange rounded-md  w-72 h-8 md:w-96"
           type="password"
           name={name}
