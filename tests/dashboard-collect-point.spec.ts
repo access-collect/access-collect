@@ -45,7 +45,9 @@ test("User experience on dashboard/collected-point-list", async ({ page }) => {
   await page
     .getByTestId("select-organisation")
     .selectOption({ label: "Organisation-test-global" });
-  await page.getByTestId("select-client").selectOption({ label: "Client Name" });
+  await page
+    .getByTestId("select-client")
+    .selectOption({ label: "Client Name" });
   await page.getByRole("button", { name: "Confirmer" }).click();
   await page
     .getByRole("link", {

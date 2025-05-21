@@ -23,12 +23,13 @@ export const hashPassword = async (text: string) => {
   }
 };
 
-export const checkPasswordValidity = async (passeword :string , hash:string) => {
-  const result = Bcrypt.compare(passeword,hash)
-  return result 
-  
-}
-
+export const checkPasswordValidity = async (
+  passeword: string,
+  hash: string,
+) => {
+  const result = Bcrypt.compare(passeword, hash);
+  return result;
+};
 
 export const getUsers = async () => {
   const selectResult = await db.select().from(user);
