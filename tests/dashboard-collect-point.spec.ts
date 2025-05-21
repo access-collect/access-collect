@@ -4,18 +4,22 @@ import { removeCollectPoint, removeUser } from "./functions";
 test.beforeEach(async ({ page }) => {
   await removeCollectPoint("Point de test");
   await page.goto("/");
-  await page.getByRole('link', { name: 'Cliquer sur le bouton SE' }).click();
-  await page.getByPlaceholder('Email').click();
-  await page.getByPlaceholder('Email').fill('super-admin-test@access-collect.fr');
+  await page.getByRole("link", { name: "Cliquer sur le bouton SE" }).click();
+  await page.getByPlaceholder("Email").click();
+  await page
+    .getByPlaceholder("Email")
+    .fill("super-admin-test@access-collect.fr");
   await page.locator('input[name="password"]').click();
-  await page.locator('input[name="password"]').fill('Test1234!');
-  await page.getByRole('button', { name: 'CONNEXION' }).click();
-
+  await page.locator('input[name="password"]').fill("Test1234!");
+  await page.getByRole("button", { name: "CONNEXION" }).click();
 });
 //later we need to improve this test => User-Admin experience on dashboard/collected-point-list
 test("User experience on dashboard/collected-point-list", async ({ page }) => {
-
-  await page.getByRole('link', { name: 'Accéder à la page dashboard/point de collecte Points de collecte' }).click();
+  await page
+    .getByRole("link", {
+      name: "Accéder à la page dashboard/point de collecte Points de collecte",
+    })
+    .click();
   await expect(page.locator("body")).toMatchAriaSnapshot(`
       - text: POINT DE COLLECTE
       - img "Pictogramme rond avec +"
@@ -52,7 +56,9 @@ test("User experience on dashboard/collected-point-list", async ({ page }) => {
   await page
     .getByTestId("select-organisation")
     .selectOption({ label: "Organisation-test-global" });
-  await page.getByTestId("select-client").selectOption({ label: "Client Name" });
+  await page
+    .getByTestId("select-client")
+    .selectOption({ label: "Client Name" });
   await page.getByRole("button", { name: "Confirmer" }).click();
   await page
     .getByRole("link", {
@@ -60,10 +66,9 @@ test("User experience on dashboard/collected-point-list", async ({ page }) => {
     })
     .click();
 
-  await expect(page.getByTestId('name-3')).toContainText('Point de test');
-  await expect(page.getByTestId('address-3')).toContainText('4 rue des tests');
-  await expect(page.getByTestId('days-3')).toContainText('Lundi Mercredi');
-
+  await expect(page.getByTestId("name-3")).toContainText("Point de test");
+  await expect(page.getByTestId("address-3")).toContainText("4 rue des tests");
+  await expect(page.getByTestId("days-3")).toContainText("Lundi Mercredi");
 
   await removeCollectPoint("Point de test");
 });

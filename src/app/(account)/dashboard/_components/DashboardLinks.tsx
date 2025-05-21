@@ -52,16 +52,12 @@ const DashboardLinks = async ({ session }: { session: any }) => {
             </div>
           </div>
         </Link>
-
       ))}
       <div className="flex flex-col justify-center">
         <SignOutButton />
       </div>
     </div>
-
   );
 };
-
-
 
 export default DashboardLinks;

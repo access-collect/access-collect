@@ -4,19 +4,23 @@ import { removeOrganisation } from "./functions";
 test.beforeEach(async ({ page }) => {
   await removeOrganisation("Organisation-Test");
   await page.goto("/");
-  //connection with super-admin and access to dashboard/organisation
-  await page.getByRole('link', { name: 'Cliquer sur le bouton SE' }).click();
-  await page.getByPlaceholder('Email').click();
-  await page.getByPlaceholder('Email').fill('super-admin-test@access-collect.fr');
+  await page.getByRole("link", { name: "Cliquer sur le bouton SE" }).click();
+  await page.getByPlaceholder("Email").click();
+  await page
+    .getByPlaceholder("Email")
+    .fill("super-admin-test@access-collect.fr");
   await page.locator('input[name="password"]').click();
-  await page.locator('input[name="password"]').fill('Test1234!');
-  await page.getByRole('button', { name: 'CONNEXION' }).click();
-  await page.getByRole('link', { name: 'Accéder à la page dashboard/organisation Organisations' }).click();
+  await page.locator('input[name="password"]').fill("Test1234!");
+  await page.getByRole("button", { name: "CONNEXION" }).click();
+  await page
+    .getByRole("link", {
+      name: "Accéder à la page dashboard/organisation Organisations",
+    })
+    .click();
 });
 
-//later we need to improve this test => User-Admin or SuperAdmin experience on dashboard/organisation
+//later we need to improve this test => User-Admin experience on dashboard/user
 test("User experience on dashboard/organisation", async ({ page }) => {
-  //check content
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: ORGANISATIONS
     - img "Pictogramme rond avec +"
@@ -40,8 +44,6 @@ test("User experience on dashboard/organisation", async ({ page }) => {
               - img "voir l'organisation en détail"
     `);
 
-  // //create organisation
-
   await page.getByRole("button", { name: "Créer" }).click();
   await page.getByPlaceholder("Nom").click();
   await page.getByPlaceholder("Nom").fill("Organisation-Test");
@@ -54,13 +56,13 @@ test("User experience on dashboard/organisation", async ({ page }) => {
   await page.getByPlaceholder("N° d'agrément").click();
   await page.getByPlaceholder("N° d'agrément").fill("AA-12345-CD-3");
   await page.getByRole("button", { name: "Confirmer" }).click();
-  //to be removed when redirection to /dashboard/organisation is done
+
   await page
     .getByRole("link", {
       name: "Accéder à la page dashboard/organisation Organisations",
     })
     .click();
-  //check if new organisation is on the list
+
   await expect(page.getByTestId("name-Organisation-Test")).toContainText(
     "Organisation-Test",
   );
@@ -85,7 +87,7 @@ test("User experience on dashboard/organisation", async ({ page }) => {
     - paragraph: "/TELEPHONE : \\\\d+/"
     - paragraph: "/N° D'AGREMENT : AA-\\\\d+-CD-3/"
     `);
-  // //delete organisation
+
   await page.getByRole("button", { name: "Supprimer" }).click();
   await expect(page.getByLabel("Suppression de l'organisation"))
     .toMatchAriaSnapshot(`
@@ -102,7 +104,7 @@ test("User experience on dashboard/organisation", async ({ page }) => {
       - text: L'organisation a bien été supprimée
     `);
   await page.getByLabel("Fermer la pop up").click();
-  //check the organization is no longer in the list
+
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - heading "Liste des organisations :" [level=1]
     - table:
