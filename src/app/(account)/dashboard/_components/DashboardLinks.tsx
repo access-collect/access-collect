@@ -37,9 +37,6 @@ const DashboardLinks = async ({ session }: { session: any }) => {
       className="w-full md:w-1/3 h-screen md:h-screen flex flex-wrap justify-center md:justify-start md:flex-col md:items-center 
       bg-transparentLightOrange"
     >
-      <div className="">
-        <h1 className="text-midnightBlue">{"Bonjour Super Admin,"}</h1>
-      </div>
       {links.map((link) => (
         <Link href={link.path} key={link.title}>
           <div

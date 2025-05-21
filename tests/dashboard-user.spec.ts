@@ -22,22 +22,17 @@ test.beforeEach(async ({ page }) => {
   await removeUser("test-add-user@access-collect.fr");
   await removeOrganisation("Organisation-test-add-user");
   await injectOrganisation(organisation);
-  await page.goto("/login");
-
-});
-//later we need to improve this test => User-Admin experience on dashboard/user
-test("User experience on dashboard/user", async ({ page }) => {
-
+  await page.goto("/");
   await page.getByPlaceholder('Email').click();
   await page.getByPlaceholder('Email').fill('super-admin-test@access-collect.fr');
   await page.locator('input[name="password"]').click();
   await page.locator('input[name="password"]').fill('Test1234!');
   await page.getByRole('button', { name: 'CONNEXION' }).click();
 
-
+});
+//later we need to improve this test => User-Admin experience on dashboard/user
+test("User experience on dashboard/user", async ({ page }) => {
   //check content of page
-
-
   await page.getByText('Utilisateurs').click();
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: UTILISATEURS
