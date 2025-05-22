@@ -66,9 +66,9 @@ test("User experience on dashboard/collected-point-list", async ({ page }) => {
     })
     .click();
 
-  await expect(page.getByTestId("name-3")).toContainText("Point de test");
-  await expect(page.getByTestId("address-3")).toContainText("4 rue des tests");
-  await expect(page.getByTestId("days-3")).toContainText("Lundi Mercredi");
+  await expect(page.getByTestId("name-Point de test")).toContainText("Point de test");
+  await expect(page.getByTestId("address-Point de test")).toContainText("4 rue des tests");
+  await expect(page.getByTestId("days-Point de test")).toContainText("Lundi Mercredi");
 
   await removeCollectPoint("Point de test");
 });
