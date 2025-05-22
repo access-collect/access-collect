@@ -1,59 +1,35 @@
 "use client";
 
-import React, { useRef, useState } from "react";
 import CheckboxForm from "../inputs/CheckboxForm";
 import { InputForm } from "../inputs/InputForm";
 import { TextAreaForm } from "../inputs/TextAreaForm";
 import ReCAPTCHA from "react-google-recaptcha";
 import OrangeButton from "../button/orangeButton";
 import Image from "next/image";
-import {successAlert, errorAlert} from "../alert";
+import { successAlert, errorAlert } from "../alert";
+import { useState } from "react";
 
 const ContactForm = () => {
   const handleSubmit = async (formData: FormData) => {
-    const result= await fetch("/api/contact", {
+    const result = await fetch("/api/contact", {
       method: "POST",
       body: formData,
     });
     if (result.ok) {
-      successAlert("Votre demande de contact a bien été envoyée");
+      await successAlert("Votre demande de contact a bien été envoyée");
     } else {
-      errorAlert("Oups.. Une erreur est survenue");
+      await errorAlert("Oups.. Une erreur est survenue");
       return;
     }
   };
+  const [isVerified, setIsVerified] = useState(true);
 
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const [isVerified, setIsVerified] = useState(false);
-
-  async function handleCaptchaSubmission(token: string | null) {
-    try {
-      if (token) {
-        await fetch("/api/recaptcha", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token }),
-        });
-        setIsVerified(true);
-      }
-    } catch (error) {
-      console.error("[Recaptcha] An error occurred while verifying token:", {
-        token,
-        error,
-      });
+  function handleChange(value: string | null) {
+    if (value == null || value == "") {
+      setIsVerified(true);
+    } else {
       setIsVerified(false);
     }
-  }
-
-  const handleChange = (token: string | null) => {
-    handleCaptchaSubmission(token);
-  };
-
-  function handleExpired() {
-    setIsVerified(false);
   }
 
   return (
@@ -76,7 +52,7 @@ const ContactForm = () => {
                   type="text"
                   name="name"
                   label="Nom"
-                  placeholder="Nom *"
+                  placeholder="Nom*"
                 />
               </div>
               <div>
@@ -104,15 +80,13 @@ const ContactForm = () => {
                   </div>
                   <ReCAPTCHA
                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-                    ref={recaptchaRef}
                     onChange={handleChange}
-                    onExpired={handleExpired}
                   />
                 </div>
                 <OrangeButton
                   label="Valider"
                   type="submit"
-                  disabled={!isVerified}
+                  disabled={isVerified}
                 />
               </div>
             </div>
