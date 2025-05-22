@@ -34,7 +34,7 @@ const ContactForm = () => {
 
   return (
     <>
-      <div className="lg:flex lg:justify-around lg:items-center lg:mt-32 xl:mt-48">
+      <div className="lg:flex lg:justify-center lg:gap-52 lg:items-center lg:mt-32 xl:mt-48">
         <div className="hidden lg:block">
           <Image
             src="/contact.png"
@@ -46,7 +46,7 @@ const ContactForm = () => {
         </div>
         <div>
           <form action={handleSubmit}>
-            <div className="mt-8 px-4 py-4 shadow-md shadow-lightOliveGreen bg-white rounded-lg flex flex-col items-center justify-center gap-4 w-[90%] mx-auto lg:w-full lg:px-16 lg:py-10 xl:px-36">
+            <div className="mt-8 px-4 pt-4 shadow-md shadow-lightOliveGreen bg-white rounded-lg flex flex-col items-center justify-center gap-4 w-[90%] mx-auto lg:w-full lg:px-16 lg:py-10 xl:px-36">
               <div>
                 <InputForm
                   type="text"
@@ -70,7 +70,7 @@ const ContactForm = () => {
                   placeholder="Votre message ici...*"
                 />
               </div>
-              <div className="flex flex-col gap-10">
+              <div className="flex flex-col gap-4">
                 <div>
                   <div className="mb-4 max-w-72 md:max-w-96">
                     <CheckboxForm

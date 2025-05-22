@@ -10,21 +10,11 @@ export const metadata: Metadata = {
 const ContactPage = () => {
   return (
     <>
-      <div className="relative min-h-screen ">
-        <div className="absolute inset-0 ">
-          <Image
-            src="/backgroundContact.jpg"
-            alt="background"
-            layout="fill"
-          ></Image>
-
-          <div className="relative">
-            <h1 className="text-brightOrange text-center text-xl mt-8 font-title font-bold tracking-widest">
-              {"FORMULAIRE DE CONTACT"}
-            </h1>
-            <ContactForm />
-          </div>
-        </div>
+      <div className="bg-transparentBrightOrange min-h-screen">
+        <h1 className="text-brightOrange text-center text-xl md:text-2xl lg:text-5xl pt-8 lg:pt-40 font-title font-bold tracking-widest">
+          {"FORMULAIRE DE CONTACT"}
+        </h1>
+        <ContactForm />
       </div>
     </>
   );
