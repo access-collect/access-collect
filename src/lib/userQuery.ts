@@ -22,6 +22,14 @@ export const hashPassword = async (text: string) => {
     console.log(error.message);
   }
 };
+  
+export const checkPasswordValidity = async (
+  password: string,
+  hash: string,
+) => {
+  const result = Bcrypt.compare(password, hash);  
+  return result;
+};
 
 export const getUsers = async () => {
   const selectResult = await db.select().from(user);
