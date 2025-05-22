@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { removeCollectPoint, removeUser } from "./functions";
+import { removeCollectPoint, } from "./functions";
 
 test.beforeEach(async ({ page }) => {
   await removeCollectPoint("Point de test");
