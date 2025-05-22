@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import {
   injectOrganisation,
+  injectUser,
   removeOrganisation,
   removeUser,
 } from "./functions";
@@ -15,15 +16,22 @@ const organisation: NewOrganisation = {
 };
 
 test.beforeEach(async ({ page }) => {
-  //To do with session = inject user with role admin and need connect the user and navigate to dashboard/user
-  await removeUser("test-add-user@access-collect.fr");
+  await removeUser("test@access-collect.fr");
   await removeOrganisation("Organisation-test-add-user");
   await injectOrganisation(organisation);
-  await page.goto("/dashboard/user");
+  await page.goto("/");
+  await page.getByRole("link", { name: "Cliquer sur le bouton SE" }).click();
+  await page.getByPlaceholder("Email").click();
+  await page
+    .getByPlaceholder("Email")
+    .fill("super-admin-test@access-collect.fr");
+  await page.locator('input[name="password"]').click();
+  await page.locator('input[name="password"]').fill("Test1234!");
+  await page.getByRole("button", { name: "CONNEXION" }).click();
 });
-//later we need to improve this test => User-Admin experience on dashboard/user
-test("User experience on dashboard/user", async ({ page }) => {
-  //check content of page
+
+test("Creating a user by a super admin", async ({ page }) => {
+  await page.getByText("Utilisateurs").click();
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: UTILISATEURS
     - img "Pictogramme rond avec +"
@@ -59,7 +67,7 @@ test("User experience on dashboard/user", async ({ page }) => {
           - cell "client"
           - cell "Organisation-test-global"
     `);
-  //go to add-user and create a new user
+
   await page.getByRole("button", { name: "Créer" }).click();
   await page.getByPlaceholder("Nom").click();
   await page.getByPlaceholder("Nom").fill("Test");
@@ -85,7 +93,7 @@ test("User experience on dashboard/user", async ({ page }) => {
       name: "Accéder à la page dashboard/utilisateur Utilisateurs",
     })
     .click();
-  //check if new user is on the list
+
   await expect(page.getByTestId("name-Test")).toContainText("Test");
   await expect(page.getByTestId("email-Test")).toContainText(
     "test@access-collect.fr",

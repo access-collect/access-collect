@@ -1,5 +1,5 @@
 "use client";
-import { redirectToHomepage } from "@/lib/actions";
+import { redirectToDashboard } from "@/lib/actions";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { InputFormHome } from "./inputs/InputFormHome";
@@ -22,13 +22,13 @@ export const getLogData = async (formData: any) => {
       warningDiv.innerHTML += `${warningMessage}`;
     }
   } else {
-    redirectToHomepage();
+    redirectToDashboard();
   }
 };
 
 const LoginForm = () => {
   return (
-    <div className="w-[300px] h-[300px] md:w-[450px] md:h-[300px] shadow-md shadow-lightOliveGreen rounded-lg flex flex-col justify-center items-center">
+    <div className="w-[300px] h-[300px] md:w-[450px] md:h-[300px] shadow-md shadow-lightOliveGreen bg-white rounded-lg flex flex-col justify-center items-center">
       <form
         action={getLogData}
         className="flex flex-col align-center gap-4 px-3 my-4"

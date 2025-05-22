@@ -8,6 +8,11 @@ import { getUserDataWithEmail } from "./userQuery";
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db),
   secret: process.env.NEXTAUTH_SECRET,
+
+  session: {
+    strategy: "jwt",
+  },
+
   providers: [
     CredentialsProvider({
       type: "credentials",
@@ -30,6 +35,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         ) {
           throw new Error("Wrong password");
         }
+
         return {
           id: userData.id,
           email: userData.email,
@@ -39,5 +45,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  callbacks: {},
+
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    async session({ session, token }) {
+      session.user = token as any;
+      return session;
+    },
+
+    async authorized({ auth }) {
+      return !!auth;
+    },
+  },
 });

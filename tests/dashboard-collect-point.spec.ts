@@ -1,14 +1,25 @@
 import { test, expect } from "@playwright/test";
-import { removeCollectPoint } from "./functions";
+import { removeCollectPoint, } from "./functions";
 
 test.beforeEach(async ({ page }) => {
   await removeCollectPoint("Point de test");
-  //To do with session = inject user with role admin and need connect the user and navigate to dashboard/collected-point-list
-  await page.goto("/dashboard/collected-point-list");
+  await page.goto("/");
+  await page.getByRole("link", { name: "Cliquer sur le bouton SE" }).click();
+  await page.getByPlaceholder("Email").click();
+  await page
+    .getByPlaceholder("Email")
+    .fill("super-admin-test@access-collect.fr");
+  await page.locator('input[name="password"]').click();
+  await page.locator('input[name="password"]').fill("Test1234!");
+  await page.getByRole("button", { name: "CONNEXION" }).click();
 });
 //later we need to improve this test => User-Admin experience on dashboard/collected-point-list
 test("User experience on dashboard/collected-point-list", async ({ page }) => {
-  //check content
+  await page
+    .getByRole("link", {
+      name: "Accéder à la page dashboard/point de collecte Points de collecte",
+    })
+    .click();
   await expect(page.locator("body")).toMatchAriaSnapshot(`
       - text: POINT DE COLLECTE
       - img "Pictogramme rond avec +"
@@ -54,9 +65,10 @@ test("User experience on dashboard/collected-point-list", async ({ page }) => {
       name: "Accéder à la page dashboard/point de collecte Points de collecte",
     })
     .click();
-  await expect(page.getByTestId("name-0")).toContainText("Point de test");
-  await expect(page.getByTestId("address-0")).toContainText("rue des tests");
-  await expect(page.getByTestId("days-0")).toContainText("Lundi Mercredi");
+
+  await expect(page.getByTestId("name-Point de test")).toContainText("Point de test");
+  await expect(page.getByTestId("address-Point de test")).toContainText("4 rue des tests");
+  await expect(page.getByTestId("days-Point de test")).toContainText("Lundi Mercredi");
 
   await removeCollectPoint("Point de test");
 });

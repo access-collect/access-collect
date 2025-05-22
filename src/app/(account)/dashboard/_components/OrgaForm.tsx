@@ -3,8 +3,12 @@ import CancelButton from "@/app/components/button/cancelButton";
 import OrangeButton from "@/app/components/button/orangeButton";
 import { InputFormRequired } from "@/app/components/inputs/InputFormRequired";
 import { addOrganisation } from "@/lib/organisationQuery";
-
+import { useRouter } from "next/navigation";
 const OrgaForm = () => {
+  const router = useRouter();
+  const handleRedirect = () => {
+    router.push("/dashboard/organisation");
+  };
   return (
     <form
       action={addOrganisation}
@@ -33,7 +37,7 @@ const OrgaForm = () => {
       />
       <div className="flex justify-around">
         <CancelButton />
-        <OrangeButton label={"Confirmer"} route={"/dashboard/organisation"} />
+        <OrangeButton label={"Confirmer"} onClick={handleRedirect} />
       </div>
     </form>
   );
