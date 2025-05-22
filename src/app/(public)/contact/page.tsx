@@ -1,6 +1,5 @@
 import ContactForm from "@/app/components/form/contactForm";
 import { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Contact - Access Collect",
