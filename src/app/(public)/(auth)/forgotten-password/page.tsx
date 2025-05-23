@@ -1,7 +1,7 @@
 "use client";
 import { errorAlert, successAlert } from "@/app/components/alert";
 import OrangeButton from "@/app/components/button/orangeButton";
-import { InputFormHome } from "@/app/components/inputs/InputFormHome";
+import { InputForm } from "@/app/components/inputs/InputForm";
 import { redirectToLogin } from "@/lib/actions";
 import { sendResetPasswordEmailIfUserExists } from "@/lib/userQuery";
 import Image from "next/image";
@@ -46,10 +46,10 @@ const forgottenPasswordPage = () => {
               action={handleEmailSending}
               className="flex flex-col align-center gap-4 px-3 my-4"
             >
-              <InputFormHome
+              <InputForm
                 name={"email"}
                 label={"Email"}
-                placeholder={"Email"}
+                placeholder={"Email*"}
               />
               <OrangeButton
                 onClick={redirectToLogin}

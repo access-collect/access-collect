@@ -9,7 +9,7 @@ export const InputForm = ({
   name: string;
   label: string;
   placeholder: string;
-  type: string;
+  type?: string;
   isRequired?: boolean;
   minLength?: number;
 }) => {
