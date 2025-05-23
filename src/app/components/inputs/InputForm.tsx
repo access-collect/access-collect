@@ -29,6 +29,7 @@ export const InputForm = ({
           placeholder={placeholder}
           minLength={minLength}
           required={isRequired}
+          data-testid={`input-${name}`}
         />
       </div>
     </>

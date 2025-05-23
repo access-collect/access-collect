@@ -26,6 +26,7 @@ export const InputFormBlue = ({
           placeholder={placeholder}
           required={isRequired}
           minLength={minLength}
+          data-testid={`password-${name}`}
         />
       </div>
     </>
