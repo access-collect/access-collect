@@ -75,8 +75,8 @@ test("Creating a user by a super admin", async ({ page }) => {
   await page.getByPlaceholder("Nom").fill("Test");
   await page.getByPlaceholder("Email").click();
   await page.getByPlaceholder("Email").fill("test@access-collect.fr");
-  await page.locator('input[name="password"]').click();
-  await page.locator('input[name="password"]').fill("Test1234!");
+  await page.getByTestId("input-password").click();
+  await page.getByTestId("input-password").fill("Test1234!");
   await page.getByPlaceholder("Téléphone").click();
   await page.getByPlaceholder("Téléphone").fill("0101010101");
   await page.locator('select[name="role"]').selectOption("admin");

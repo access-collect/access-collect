@@ -1,18 +1,22 @@
 const OrangeButton = ({
   label,
-  onClick,
+  disabled = false,
 }: {
   label: string;
-
-  onClick?: () => void;
+  disabled?: boolean;
 }) => {
   return (
     <>
       <button
-        onClick={onClick}
-        className="bg-lightOrange  text-midnightBlue rounded-full p-2 font-title uppercase mb-4"
+        type={"submit"}
+        disabled={disabled}
+        className={`${
+          disabled
+            ? "bg-gray-400 text-gray-600 cursor-not-allowed"
+            : "c-btn--orange text-midnightBlue"
+        } c-btn c-btn--r50 px-16 py-4 font-title uppercase mb-4 text-lg transition-all duration-200 lg:px-32`}
       >
-        {label}
+        <span>{label}</span>
       </button>
     </>
   );

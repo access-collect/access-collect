@@ -1,13 +1,16 @@
 "use client";
 import { errorAlert, successAlert } from "@/app/components/alert";
 import OrangeButton from "@/app/components/button/orangeButton";
-import { InputFormHome } from "@/app/components/inputs/InputFormHome";
-import { redirectToLogin } from "@/lib/actions";
+import { InputForm } from "@/app/components/inputs/InputForm";
 import { sendResetPasswordEmailIfUserExists } from "@/lib/userQuery";
 import Image from "next/image";
-const forgottenPasswordPage = () => {
+import { useRouter } from "next/navigation";
+const ForgottenPasswordPage = () => {
+  const router = useRouter();
+
   const handleEmailSending = async (formData: FormData) => {
     const email = Object.fromEntries(formData);
+    console.log("forgotten", email.email);
     const sendEmail = await sendResetPasswordEmailIfUserExists(
       email.email as string,
     );
@@ -17,6 +20,7 @@ const forgottenPasswordPage = () => {
     }
 
     successAlert("Un mail de réinitialisation, vous a été envoyé.");
+    router.push("/login");
   };
   return (
     <div>
@@ -46,15 +50,12 @@ const forgottenPasswordPage = () => {
               action={handleEmailSending}
               className="flex flex-col align-center gap-4 px-3 my-4"
             >
-              <InputFormHome
+              <InputForm
                 name={"email"}
                 label={"Email"}
-                placeholder={"Email"}
+                placeholder={"Email*"}
               />
-              <OrangeButton
-                onClick={redirectToLogin}
-                label={"REINITIALISATION"}
-              />
+              <OrangeButton label={"REINITIALISATION"} />
             </form>
           </div>
         </div>
@@ -63,4 +64,4 @@ const forgottenPasswordPage = () => {
   );
 };
 
-export default forgottenPasswordPage;
+export default ForgottenPasswordPage;

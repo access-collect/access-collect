@@ -16,10 +16,10 @@ test("Test connection and access to dashboard is forbidden when visitor is not c
   await page.getByPlaceholder("Email").click();
   await page.getByPlaceholder("Email").fill("admin-test@access-collect.fr");
   await page.getByRole("button", { name: "CONNEXION" }).click();
-  await expect(page.getByTestId("input-password-home")).toHaveAttribute(
+  await expect(page.getByTestId("password-password")).toHaveAttribute(
     "required",
   );
-  await page.getByTestId("input-password-home").fill("Test1234!");
+  await page.getByTestId("password-password").fill("Test1234!");
   await page.getByRole("button", { name: "CONNEXION" }).click();
   await expect(page.getByRole("heading")).toMatchAriaSnapshot(
     `- heading "Bonjour Super Admin," [level=1]`,

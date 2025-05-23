@@ -81,7 +81,6 @@ body {
 .c-btn {
   cursor: pointer;
   position: relative;
-  border-radius: 10px;
   display: inline-block;
   overflow: hidden;
   text-align: center;
@@ -89,6 +88,14 @@ body {
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+}
+
+.c-btn--r10 {
+  border-radius: 10px;
+}
+
+.c-btn--r50 {
+  border-radius: 50px;
 }
 
 .c-btn span {
@@ -121,6 +128,7 @@ body {
   background: #ffa632;
   border-color: #ffa632;
 }
+
 .cancelButton {
   background-color: #ffffff;
   border: 1px solid #ffc374;

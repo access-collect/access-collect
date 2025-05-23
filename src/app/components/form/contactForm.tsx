@@ -1,0 +1,96 @@
+"use client";
+
+import CheckboxForm from "../inputs/CheckboxForm";
+import { InputForm } from "../inputs/InputForm";
+import { TextAreaForm } from "../inputs/TextAreaForm";
+import ReCAPTCHA from "react-google-recaptcha";
+import OrangeButton from "../button/orangeButton";
+import Image from "next/image";
+import { successAlert, errorAlert } from "../alert";
+import { useState } from "react";
+
+const ContactForm = () => {
+  const handleSubmit = async (formData: FormData) => {
+    const result = await fetch("/api/contact", {
+      method: "POST",
+      body: formData,
+    });
+    if (result.ok) {
+      await successAlert("Votre demande de contact a bien été envoyée");
+    } else {
+      await errorAlert("Oups.. Une erreur est survenue");
+      return;
+    }
+  };
+  const [isVerified, setIsVerified] = useState(true);
+
+  function handleChange(value: string | null) {
+    if (value == null || value == "") {
+      setIsVerified(true);
+    } else {
+      setIsVerified(false);
+    }
+  }
+
+  return (
+    <>
+      <div className="lg:flex lg:justify-center lg:gap-52 lg:items-center lg:mt-32 xl:mt-48">
+        <div className="hidden lg:block">
+          <Image
+            src="/contact.png"
+            alt="image décoratif pour nous contacter"
+            width={600}
+            height={1}
+            className="rounded-lg"
+          />
+        </div>
+        <div>
+          <form action={handleSubmit}>
+            <div className="mt-8 px-4 pt-4 shadow-md shadow-lightOliveGreen bg-white rounded-lg flex flex-col items-center justify-center gap-4 w-[90%] mx-auto lg:w-full lg:px-16 lg:py-10 xl:px-36">
+              <div>
+                <InputForm
+                  type="text"
+                  name="name"
+                  label="Nom"
+                  placeholder="Nom*"
+                />
+              </div>
+              <div>
+                <InputForm
+                  type="email"
+                  name="email"
+                  label="Adresse mail"
+                  placeholder="Adresse mail*"
+                />
+              </div>
+              <div>
+                <TextAreaForm
+                  name="message"
+                  label="Message"
+                  placeholder="Votre message ici...*"
+                />
+              </div>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <div className="mb-4 max-w-72 md:max-w-96">
+                    <CheckboxForm
+                      name="checkbox"
+                      value="En soumettant ce formulaire, j'accepte que les informations saisies soient utilisées dans le but de me recontacter."
+                    />
+                  </div>
+                  <ReCAPTCHA
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                    onChange={handleChange}
+                  />
+                </div>
+                <OrangeButton label="Valider" disabled={isVerified} />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ContactForm;
