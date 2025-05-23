@@ -40,7 +40,7 @@ export const addOrganisation = async (formData: any) => {
 
     revalidatePath("/dashboard/organisation");
   } catch {
-    console.error("the organisation has not been added to the database");
+    return { error: "Organisation not inserted" };
   }
 };
 

@@ -9,7 +9,6 @@ import { Organisation } from "@/lib/schema/organisation";
 import { addUser } from "@/lib/userQuery";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 const UserForm = ({
   organisationInfos,
@@ -19,10 +18,6 @@ const UserForm = ({
   const router = useRouter();
   const [selectedUser, setSelectedUser] = useState("");
   const [selectedOrga, setSelectedOrga] = useState("");
-  const router = useRouter();
-  const handleRedirect = () => {
-    router.push("/dashboard/user");
-  };
 
   const handleFormAction = async (formData: FormData) => {
     const result = await addUser(formData);
@@ -33,8 +28,7 @@ const UserForm = ({
       return;
     }
     successAlert("L'utilisateur a bien été ajouté !");
-    router.push('/dashboard/user');
-
+    router.push("/dashboard/user");
   };
 
   return (
@@ -107,8 +101,8 @@ const UserForm = ({
         </select>
       </div>
       <div className="flex justify-around">
-        <CancelButton />
-        <OrangeButton label={"Confirmer"} onClick={handleRedirect} />
+        <CancelButton path={"/dashboard/user"} />
+        <OrangeButton label={"Confirmer"} />
       </div>
     </form>
   );

@@ -29,7 +29,7 @@ export const addCollectedPoint = async (formData: any) => {
       .returning();
     revalidatePath("dashboard/add-collected-point");
   } catch {
-    console.error("the collected point has not been added to the database");
+    return { error: "the collected point has not been added to the database" };
   }
 };
 
