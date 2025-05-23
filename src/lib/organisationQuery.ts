@@ -23,7 +23,7 @@ export const getOrganisation = async (id: string) => {
   return result as Organisation;
 };
 
-export const addOrganisation = async (formData: any) => {
+export const addOrganisation = async (formData: FormData) => {
   const data = await replaceEmptyValueByNull(formData);
 
   try {
@@ -40,7 +40,7 @@ export const addOrganisation = async (formData: any) => {
 
     revalidatePath("/dashboard/organisation");
   } catch {
-    console.error("the organisation has not been added to the database");
+    return { error: "Organisation not inserted" };
   }
 };
 

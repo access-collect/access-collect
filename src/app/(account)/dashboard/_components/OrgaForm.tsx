@@ -1,4 +1,5 @@
 "use client";
+import { errorAlert, successAlert } from "@/app/components/alert";
 import CancelButton from "@/app/components/button/cancelButton";
 import OrangeButton from "@/app/components/button/orangeButton";
 import { InputFormRequired } from "@/app/components/inputs/InputFormRequired";
@@ -6,12 +7,22 @@ import { addOrganisation } from "@/lib/organisationQuery";
 import { useRouter } from "next/navigation";
 const OrgaForm = () => {
   const router = useRouter();
-  const handleRedirect = () => {
+
+  const handleSubmit = async (formData: FormData) => {
+    const result = await addOrganisation(formData);
+
+    if (result?.error) {
+      errorAlert(
+        "Une erreur est survenue lors de l'ajout de l'organisation. Veuillez recommencer.",
+      );
+    }
+    successAlert("L'organisation a bien été ajoutée !");
     router.push("/dashboard/organisation");
   };
+
   return (
     <form
-      action={addOrganisation}
+      action={handleSubmit}
       className="flex flex-col align-center gap-4 px-3 my-4"
     >
       <InputFormRequired name={"name"} label={"Nom: "} placeholder={"Nom"} />
@@ -36,8 +47,8 @@ const OrgaForm = () => {
         placeholder={"N° d'agrément"}
       />
       <div className="flex justify-around">
-        <CancelButton />
-        <OrangeButton label={"Confirmer"} onClick={handleRedirect} />
+        <CancelButton path={"/dashboard/organisation"} />
+        <OrangeButton label={"Confirmer"} />
       </div>
     </form>
   );

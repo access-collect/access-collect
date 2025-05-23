@@ -1,16 +1,16 @@
 "use client";
-import { useRouter } from "next/navigation";
 
-const CancelButton = () => {
-  const router = useRouter();
+import Link from "next/link";
+
+const CancelButton = ({ path }: { path: string }) => {
   return (
     <>
-      <button
-        onClick={() => router.back()}
+      <Link
+        href={path}
         className="border border-lightOrange text-midnightBlue  p-2 font-title uppercase mb-4"
       >
-        ANNULER
-      </button>
+        {"ANNULER"}
+      </Link>
     </>
   );
 };

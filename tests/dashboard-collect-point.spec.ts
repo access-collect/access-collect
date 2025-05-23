@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { removeCollectPoint, } from "./functions";
+import { removeCollectPoint } from "./functions";
 
 test.beforeEach(async ({ page }) => {
   await removeCollectPoint("Point de test");
@@ -13,13 +13,16 @@ test.beforeEach(async ({ page }) => {
   await page.locator('input[name="password"]').fill("Test1234!");
   await page.getByRole("button", { name: "CONNEXION" }).click();
 });
-//later we need to improve this test => User-Admin experience on dashboard/collected-point-list
-test("User experience on dashboard/collected-point-list", async ({ page }) => {
+
+test("Super-Admin create collect point on dashboard/collected-point-list", async ({
+  page,
+}) => {
   await page
     .getByRole("link", {
       name: "Accéder à la page dashboard/point de collecte Points de collecte",
     })
     .click();
+  await expect(page).toHaveURL("dashboard/collected-point-list");
   await expect(page.locator("body")).toMatchAriaSnapshot(`
       - text: POINT DE COLLECTE
       - img "Pictogramme rond avec +"
@@ -35,8 +38,8 @@ test("User experience on dashboard/collected-point-list", async ({ page }) => {
             - cell "Consulter"
         - rowgroup
       `);
-  //create a collect point - check content
   await page.getByRole("button", { name: "Créer" }).click();
+  await expect(page).toHaveURL("dashboard/add-collected-point");
   await page.getByPlaceholder("Point Exemple").click();
   await page.getByPlaceholder("Point Exemple").fill("Point de test");
   await page.getByPlaceholder("3 rue de l'exemple 01234").click();
@@ -60,15 +63,20 @@ test("User experience on dashboard/collected-point-list", async ({ page }) => {
     .getByTestId("select-client")
     .selectOption({ label: "Client Name" });
   await page.getByRole("button", { name: "Confirmer" }).click();
-  await page
-    .getByRole("link", {
-      name: "Accéder à la page dashboard/point de collecte Points de collecte",
-    })
-    .click();
-
-  await expect(page.getByTestId("name-Point de test")).toContainText("Point de test");
-  await expect(page.getByTestId("address-Point de test")).toContainText("4 rue des tests");
-  await expect(page.getByTestId("days-Point de test")).toContainText("Lundi Mercredi");
+  await expect(page.locator("#swal2-html-container")).toMatchAriaSnapshot(
+    `- text: Le point de collecte a bien été ajouté !`,
+  );
+  await page.getByLabel("Fermer la pop up").click();
+  await expect(page).toHaveURL("dashboard/collected-point-list");
+  await expect(page.getByTestId("name-Point de test")).toContainText(
+    "Point de test",
+  );
+  await expect(page.getByTestId("address-Point de test")).toContainText(
+    "4 rue des tests",
+  );
+  await expect(page.getByTestId("days-Point de test")).toContainText(
+    "Lundi Mercredi",
+  );
 
   await removeCollectPoint("Point de test");
 });

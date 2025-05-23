@@ -22,12 +22,9 @@ export const hashPassword = async (text: string) => {
     console.log(error.message);
   }
 };
-  
-export const checkPasswordValidity = async (
-  password: string,
-  hash: string,
-) => {
-  const result = Bcrypt.compare(password, hash);  
+
+export const checkPasswordValidity = async (password: string, hash: string) => {
+  const result = Bcrypt.compare(password, hash);
   return result;
 };
 
@@ -51,7 +48,7 @@ export const getUsersWithOrganisationName = async () => {
   return selectResult as UserWithOrganisation[];
 };
 
-export const addUser = async (formData: any) => {
+export const addUser = async (formData: FormData) => {
   const data = await replaceEmptyValueByNull(formData);
 
   const newPassword = await hashPassword(data.password);

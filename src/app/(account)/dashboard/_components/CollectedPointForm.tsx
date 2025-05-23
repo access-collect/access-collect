@@ -11,6 +11,7 @@ import OrangeButton from "@/app/components/button/orangeButton";
 import { User } from "@/lib/schema/user";
 import { useRouter } from "next/navigation";
 import { InputFormRequired } from "@/app/components/inputs/InputFormRequired";
+import { errorAlert, successAlert } from "@/app/components/alert";
 
 export const CollectedPointForm = ({
   organisationInfos,
@@ -22,9 +23,6 @@ export const CollectedPointForm = ({
   const [selectedClient, setSelectedClient] = useState<string>("");
   const [checkDeliveryDay, setCheckDeliveryDay] = useState<string[]>([]);
   const router = useRouter();
-  const handleRedirect = () => {
-    router.push("/dashboard/collected-point-list");
-  };
 
   const handleChange = (e: { target: { checked: boolean; value: string } }) => {
     let deliveryDays: string[] = checkDeliveryDay;
@@ -57,10 +55,24 @@ export const CollectedPointForm = ({
     fetchClients();
   }, [selectedOrga]);
 
+  const handleSubmit = async (formData: FormData) => {
+    const result = await addCollectedPoint(formData);
+
+    if (result?.error) {
+      errorAlert(
+        "Une erreur est survenue lors de l'ajout du point de collecte. Veuillez recommencer.",
+      );
+      return;
+    }
+
+    successAlert("Le point de collecte a bien été ajouté !");
+    router.push("/dashboard/collected-point-list");
+  };
+
   return (
     <>
       <form
-        action={addCollectedPoint}
+        action={handleSubmit}
         className="flex flex-col align-center gap-4 px-3 my-4"
       >
         <InputFormRequired
@@ -160,8 +172,8 @@ export const CollectedPointForm = ({
           </select>
         </div>
         <div className="flex justify-around">
-          <CancelButton />
-          <OrangeButton label={"Confirmer"} onClick={handleRedirect} />
+          <CancelButton path={"/dashboard/collected-point-list"} />
+          <OrangeButton label={"Confirmer"} />
         </div>
       </form>
     </>

@@ -32,6 +32,7 @@ test.beforeEach(async ({ page }) => {
 
 test("Creating a user by a super admin", async ({ page }) => {
   await page.getByText("Utilisateurs").click();
+  await expect(page).toHaveURL("dashboard/user");
   await expect(page.locator("body")).toMatchAriaSnapshot(`
     - text: UTILISATEURS
     - img "Pictogramme rond avec +"
@@ -69,6 +70,7 @@ test("Creating a user by a super admin", async ({ page }) => {
     `);
 
   await page.getByRole("button", { name: "Créer" }).click();
+  await expect(page).toHaveURL("dashboard/add-user");
   await page.getByPlaceholder("Nom").click();
   await page.getByPlaceholder("Nom").fill("Test");
   await page.getByPlaceholder("Email").click();
@@ -88,11 +90,7 @@ test("Creating a user by a super admin", async ({ page }) => {
       - text: L'utilisateur a bien été ajouté !
     `);
   await page.getByLabel("Fermer la pop up").click();
-  await page
-    .getByRole("link", {
-      name: "Accéder à la page dashboard/utilisateur Utilisateurs",
-    })
-    .click();
+  await expect(page).toHaveURL("dashboard/user");
 
   await expect(page.getByTestId("name-Test")).toContainText("Test");
   await expect(page.getByTestId("email-Test")).toContainText(
