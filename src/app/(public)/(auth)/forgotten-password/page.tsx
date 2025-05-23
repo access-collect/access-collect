@@ -4,10 +4,9 @@ import OrangeButton from "@/app/components/button/orangeButton";
 import { InputForm } from "@/app/components/inputs/InputForm";
 import { sendResetPasswordEmailIfUserExists } from "@/lib/userQuery";
 import Image from "next/image";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 const ForgottenPasswordPage = () => {
-
-    const router = useRouter();
+  const router = useRouter();
 
   const handleEmailSending = async (formData: FormData) => {
     const email = Object.fromEntries(formData);
@@ -56,9 +55,7 @@ const ForgottenPasswordPage = () => {
                 label={"Email"}
                 placeholder={"Email*"}
               />
-              <OrangeButton
-                label={"REINITIALISATION"}
-              />
+              <OrangeButton label={"REINITIALISATION"} />
             </form>
           </div>
         </div>

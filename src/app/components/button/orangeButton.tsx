@@ -1,4 +1,10 @@
-const OrangeButton = ({ label, disabled = false }: { label: string, disabled?: boolean }) => {
+const OrangeButton = ({
+  label,
+  disabled = false,
+}: {
+  label: string;
+  disabled?: boolean;
+}) => {
   return (
     <>
       <button

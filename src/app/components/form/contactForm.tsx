@@ -83,11 +83,7 @@ const ContactForm = () => {
                     onChange={handleChange}
                   />
                 </div>
-                <OrangeButton
-                  label="Valider"
-                  type="submit"
-                  disabled={isVerified}
-                />
+                <OrangeButton label="Valider" disabled={isVerified} />
               </div>
             </div>
           </form>

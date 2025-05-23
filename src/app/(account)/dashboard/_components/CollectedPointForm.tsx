@@ -174,7 +174,7 @@ export const CollectedPointForm = ({
         </div>
         <div className="flex justify-around">
           <CancelButton path={"/dashboard/collected-point-list"} />
-          <OrangeButton label={"Confirmer"}/>
+          <OrangeButton label={"Confirmer"} />
         </div>
       </form>
     </>

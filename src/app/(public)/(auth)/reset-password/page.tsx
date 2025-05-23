@@ -2,15 +2,15 @@
 import { errorAlert, successAlert } from "@/app/components/alert";
 import OrangeButton from "@/app/components/button/orangeButton";
 import { InputPasswordHome } from "@/app/components/inputs/InputPasswordHome";
-import { redirectToLogin } from "@/lib/actions";
 import { updatePassword } from "@/lib/userQuery";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const ResetPasswordPage = () => {
   const searchParams = useSearchParams();
   const userId = searchParams.get("userId");
   const key = searchParams.get("userKey");
+  const router = useRouter();
 
   const handleSubmitNewPassword = async (formData: FormData) => {
     const { newPassword, newPasswordRepeat } = Object.fromEntries(formData);
@@ -38,7 +38,7 @@ const ResetPasswordPage = () => {
       successAlert(
         "Votre mot de passe a bien été mis à jour. Vous avez été redirigé vers la page de connexion.",
       );
-      redirectToLogin();
+      router.push("/login");
     }
   };
 
@@ -75,11 +75,7 @@ const ResetPasswordPage = () => {
               label={"Confirmez votre nouveau mot de passe :"}
             />
 
-            <OrangeButton
-              onClick={redirectToLogin}
-              type="submit"
-              label={"REINITIALISATION"}
-            />
+            <OrangeButton label={"REINITIALISATION"} />
           </form>
         </div>
       </div>
