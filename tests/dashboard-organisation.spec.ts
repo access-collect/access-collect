@@ -58,7 +58,7 @@ test("Super-admin create and delete an organisation", async ({ page }) => {
   await page.getByPlaceholder("N° d'agrément").fill("AA-12345-CD-3");
   await page.getByRole("button", { name: "Confirmer" }).click();
   await expect(page.locator("#swal2-html-container")).toMatchAriaSnapshot(
-    `- text: L'organisation a bien été ajouté !`,
+    `- text: L'organisation a bien été ajoutée !`,
   );
   await page.getByLabel("Fermer la pop up").click();
 

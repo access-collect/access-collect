@@ -23,7 +23,7 @@ export const getOrganisation = async (id: string) => {
   return result as Organisation;
 };
 
-export const addOrganisation = async (formData: any) => {
+export const addOrganisation = async (formData: FormData) => {
   const data = await replaceEmptyValueByNull(formData);
 
   try {

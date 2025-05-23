@@ -16,7 +16,7 @@ const OrgaForm = () => {
         "Une erreur est survenue lors de l'ajout de l'organisation. Veuillez recommencer.",
       );
     }
-    successAlert("L'organisation a bien été ajouté !");
+    successAlert("L'organisation a bien été ajoutée !");
     router.push("/dashboard/organisation");
   };
 

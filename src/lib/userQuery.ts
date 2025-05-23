@@ -48,7 +48,7 @@ export const getUsersWithOrganisationName = async () => {
   return selectResult as UserWithOrganisation[];
 };
 
-export const addUser = async (formData: any) => {
+export const addUser = async (formData: FormData) => {
   const data = await replaceEmptyValueByNull(formData);
 
   const newPassword = await hashPassword(data.password);
