@@ -43,7 +43,7 @@ const LoginForm = () => {
           name={"password"}
           label={"Mot de passe"}
           placeholder={"Mot de passe"}
-          type="passsword"
+          type="password"
           minLength={8}
         />
         <div className="flex justify-center">

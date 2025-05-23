@@ -64,7 +64,6 @@ export const CollectedPointForm = ({
       );
       return;
     }
-
     successAlert("Le point de collecte a bien été ajouté !");
     router.push("/dashboard/collected-point-list");
   };
@@ -175,7 +174,7 @@ export const CollectedPointForm = ({
         </div>
         <div className="flex justify-around">
           <CancelButton path={"/dashboard/collected-point-list"} />
-          <OrangeButton label={"Confirmer"} />
+          <OrangeButton label={"Confirmer"}/>
         </div>
       </form>
     </>

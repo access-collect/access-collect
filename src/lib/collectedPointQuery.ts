@@ -14,7 +14,7 @@ export const getCollectedPoints = async () => {
 export const addCollectedPoint = async (formData: any) => {
   const { name, address, clientId, organisationId } =
     Object.fromEntries(formData);
-
+console.log("coucou du back")
   const days = formData.getAll("daysOfCollect");
   try {
     await db

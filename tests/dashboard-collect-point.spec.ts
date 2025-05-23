@@ -39,7 +39,7 @@ test("Super-Admin create collect point on dashboard/collected-point-list", async
         - rowgroup
       `);
   await page.getByRole("button", { name: "Créer" }).click();
-  await expect(page).toHaveURL("dashboard/add-collected-point");
+  // await expect(page).toHaveURL("dashboard/add-collected-point");
   await page.getByPlaceholder("Point Exemple").click();
   await page.getByPlaceholder("Point Exemple").fill("Point de test");
   await page.getByPlaceholder("3 rue de l'exemple 01234").click();

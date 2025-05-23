@@ -1,8 +1,7 @@
-const OrangeButton = ({ label, onClick, type = "button", disabled = false }: { label: string; type?: "button" | "submit", onClick?: () => void, disabled?: boolean }) => {
+const OrangeButton = ({ label, onClick, disabled = false }: { label: string, onClick?: () => void, disabled?: boolean }) => {
   return (
     <>
       <button
-        type={type}
         onClick={onClick}
         disabled={disabled}
         className={`${
